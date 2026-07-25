@@ -1,5 +1,5 @@
 window.AETHERIS_DATA = {
-  "version": 2,
+  "version": 2.1,
   "regions": [
     "Elyndar",
     "Vharos",
@@ -402,6 +402,677 @@ window.AETHERIS_DATA = {
       "talent": "Ordem Tática: gaste Ação; aliado em 10m move 2m e recebe +2 no próximo teste.",
       "equipment": "Mapa tático, foco de comando, arma simples."
     }
+  },
+  "regionalProfessions": {
+    "Elyndar": [
+      {
+        "name": "Guardião Celestial",
+        "base": "Guerreiro",
+        "summary": "Soldado de pontes, templos e arquivos sagrados de Elyndar.",
+        "talent": "Vigília Solar: quando protege um aliado ou entrada consagrada, recebe +1 Defesa até o início do próximo turno.",
+        "equipment": "Arma marcial, armadura média, escudo cerimonial e insígnia celestial."
+      },
+      {
+        "name": "Sacerdote Solar",
+        "base": "Sacerdote",
+        "summary": "Ministro dos cultos de Hélio ou Rá, responsável por ritos públicos e purificação.",
+        "talent": "Ofício da Revelação: uma vez por cena, ao usar Rituais para revelar mentira, disfarce ou corrupção, role com vantagem.",
+        "equipment": "Símbolo solar, vestes claras, kit ritual e incenso purificador."
+      },
+      {
+        "name": "Escriba de Toth",
+        "base": "Escriba Rúnico",
+        "summary": "Registrador de leis, linhagens, selos e permissões religiosas.",
+        "talent": "Autoridade do Registro: uma vez por sessão, apresente um documento, selo ou precedente plausível que conceda acesso burocrático limitado.",
+        "equipment": "Foco rúnico, ferramentas de escrita, códice legal e selo oficial."
+      },
+      {
+        "name": "Inquisidor da Pureza",
+        "base": "Investigador",
+        "summary": "Agente religioso que investiga heresia, pactos e desvios espirituais.",
+        "talent": "Interrogatório Doutrinário: após observar uma contradição, receba +2 no próximo teste de Intuição ou Persuasão contra o mesmo alvo.",
+        "equipment": "Registros de acusação, arma simples, símbolo de autoridade e kit de coleta."
+      },
+      {
+        "name": "Arqueiro Cerimonial",
+        "base": "Caçador",
+        "summary": "Vigia Avaris ou humano treinado para defender torres, procissões e rotas altas.",
+        "talent": "Tiro de Sentinela: se não se mover no turno, o primeiro ataque à distância recebe +2.",
+        "equipment": "Arco longo, aljava, armadura leve e manto de vigia."
+      },
+      {
+        "name": "Diplomata de Linhagem",
+        "base": "Mercador Diplomata",
+        "summary": "Representante de casa nobre, templo ou autoridade celestial.",
+        "talent": "Nome de Família: uma vez por sessão, invoque uma linhagem ou patrono para obter audiência formal, sem garantir cooperação.",
+        "equipment": "Vestuário nobre, documentos, presente diplomático e arma discreta."
+      },
+      {
+        "name": "Jardineiro da Harmonia",
+        "base": "Alquimista",
+        "summary": "Cultivador dos jardins suspensos, ervas rituais e plantas celestiais.",
+        "talent": "Essência Serena: após descanso longo, prepare um bálsamo que remove Medo leve ou concede +1 contra corrupção por uma cena.",
+        "equipment": "Kit botânico, tesoura ritual, frascos e sementes raras.",
+        "skillBonus": {
+          "Alquimia": 1,
+          "Cura": 1
+        }
+      }
+    ],
+    "Vharos": [
+      {
+        "name": "Gladiador Carmesim",
+        "base": "Guerreiro",
+        "summary": "Combatente treinado nos ritos, duelos e julgamentos do Coliseu Carmesim.",
+        "talent": "Aclamação da Arena: ao reduzir um inimigo a 0 PV ou vencer um duelo, recupere 1 PE uma vez por cena.",
+        "equipment": "Arma de arena, armadura média, faixa de clã e troféu de combate."
+      },
+      {
+        "name": "Mercenário de Clã",
+        "base": "Guerreiro",
+        "summary": "Soldado contratado que luta por companhia, bandeira e juramento.",
+        "talent": "Contrato de Sangue: escolha um aliado no início da cena; +1 em ataques contra quem o ferir até o fim do próximo turno.",
+        "equipment": "Arma marcial, armadura média, contrato e kit de campanha."
+      },
+      {
+        "name": "Caçador de Bestas",
+        "base": "Caçador",
+        "summary": "Rastreador de predadores das rochas vermelhas e monstros de arena.",
+        "talent": "Conhecer a Fera: após um teste bem-sucedido de Sobrevivência, descubra uma resistência ou padrão de ataque da criatura.",
+        "equipment": "Arma à distância, lança, armadilhas e kit de caça."
+      },
+      {
+        "name": "Sacerdote de Montus",
+        "base": "Sacerdote",
+        "summary": "Condutor de ritos físicos, provas de resistência e juramentos de combate.",
+        "talent": "Rito da Resistência: uma vez por cena, um aliado que receber cura também ignora penalidades de ferimento até o próximo turno.",
+        "equipment": "Símbolo de Montus, ataduras, óleo ritual e arma de impacto.",
+        "skillBonus": {
+          "Atletismo": 1,
+          "Rituais": 1
+        },
+        "statBonus": {
+          "pv": 2,
+          "pe": 2
+        }
+      },
+      {
+        "name": "Ferreiro de Guerra",
+        "base": "Alquimista",
+        "summary": "Artesão de armas, armaduras, correntes e reparos de campanha.",
+        "talent": "Reforço de Campo: em uma pausa, conceda +1 dano a uma arma ou +1 Defesa a uma armadura até o próximo descanso.",
+        "equipment": "Ferramentas de ferreiro, martelo, peças metálicas e avental resistente.",
+        "skillBonus": {
+          "Engenharia": 1,
+          "Alquimia": 1
+        }
+      },
+      {
+        "name": "Estrategista de Arena",
+        "base": "Estrategista",
+        "summary": "Treinador, árbitro ou comandante acostumado a ler formações e duelos.",
+        "talent": "Leitura do Círculo: no primeiro turno, indique um ponto de vantagem; um aliado que o ocupar recebe +2 no próximo teste.",
+        "equipment": "Mapa de arena, apito, arma simples e insígnia de treinador."
+      },
+      {
+        "name": "Batedor das Correntes",
+        "base": "Navegador Celeste",
+        "summary": "Explorador das pontes, correntes e penhascos que conectam as fortalezas de Vharos.",
+        "talent": "Passo sobre o Vazio: vantagem em Acrobacia ou Reflexos para atravessar correntes, bordas estreitas e estruturas instáveis.",
+        "equipment": "Gancho, corda reforçada, arma leve e sinalizadores.",
+        "skillBonus": {
+          "Acrobacia": 1,
+          "Sobrevivência": 1
+        }
+      }
+    ],
+    "Lethra Velada": [
+      {
+        "name": "Sacerdote Funerário",
+        "base": "Sacerdote",
+        "summary": "Responsável por nomes, corpos, ritos de passagem e registros dos mortos.",
+        "talent": "Último Nome: ao conduzir um rito correto, o grupo recebe +1 contra possessão e medo espiritual por uma cena.",
+        "equipment": "Símbolo funerário, livro de nomes, velas e kit ritual."
+      },
+      {
+        "name": "Exorcista",
+        "base": "Guardião Funerário",
+        "summary": "Especialista em possessões, espíritos hostis e áreas assombradas.",
+        "talent": "Quebra de Vínculo: uma vez por cena, conceda nova resistência a um aliado contra possessão, Dominação ou medo espiritual.",
+        "equipment": "Arma ritual, sal, sinos, correntes e selos funerários."
+      },
+      {
+        "name": "Guardião das Tumbas",
+        "base": "Guardião Funerário",
+        "summary": "Protetor de cemitérios, criptas e corpos consagrados.",
+        "talent": "Nada Passa: enquanto permanecer junto a uma entrada, túmulo ou aliado caído, recebe +1 Defesa e não pode ser empurrado.",
+        "equipment": "Arma ritual, armadura média, lanterna de névoa e selo de tumba.",
+        "skillBonus": {
+          "Rituais": 1,
+          "Atletismo": 1
+        },
+        "statBonus": {
+          "pv": 4
+        }
+      },
+      {
+        "name": "Médium das Névoas",
+        "base": "Investigador",
+        "summary": "Intérprete de ecos, memórias e vozes que atravessam a névoa de Lethra.",
+        "talent": "Escutar o Eco: uma vez por cena, pergunte qual emoção ou memória mais forte marcou o local.",
+        "equipment": "Sinos pequenos, diário, foco espiritual e proteção leve.",
+        "skillBonus": {
+          "Intuição": 1,
+          "Ocultismo": 1
+        },
+        "statBonus": {
+          "pe": 2
+        }
+      },
+      {
+        "name": "Recuperador de Relíquias",
+        "base": "Espião",
+        "summary": "Explorador discreto de ruínas, túmulos e locais espiritualmente instáveis.",
+        "talent": "Mãos Cuidadosas: +2 em Prestidigitação ou Investigação para retirar relíquias sem ativar armadilhas espirituais.",
+        "equipment": "Ferramentas finas, arma discreta, corda e recipientes selados.",
+        "skillBonus": {
+          "Prestidigitação": 1,
+          "Investigação": 1
+        }
+      },
+      {
+        "name": "Vigia dos Sinos",
+        "base": "Caçador",
+        "summary": "Sentinela que patrulha cemitérios suspensos e responde a sinos sem vento.",
+        "talent": "Alarme Funerário: não pode ser surpreendido por mortos-vivos ou criaturas espirituais enquanto estiver consciente.",
+        "equipment": "Arco curto, sino de aviso, manto de névoa e sal."
+      },
+      {
+        "name": "Condutor de Mortos",
+        "base": "Navegador Celeste",
+        "summary": "Guia de procissões, barcos funerários e rotas seguras para almas e enlutados.",
+        "talent": "Caminho do Repouso: durante viagens espirituais, o grupo ignora a primeira complicação causada por desorientação ou assombração.",
+        "equipment": "Lanterna funerária, mapa de necrópoles, vara ritual e corda.",
+        "skillBonus": {
+          "Rituais": 1,
+          "Percepção": 1
+        },
+        "statBonus": {
+          "pe": 2
+        }
+      }
+    ],
+    "Veylan Nexus": [
+      {
+        "name": "Arquivista do Nexus",
+        "base": "Investigador",
+        "summary": "Responsável por registros, classificação de dados e acesso a arquivos vigiados.",
+        "talent": "Referência Cruzada: uma vez por cena, após encontrar uma pista escrita, descubra onde procurar a próxima informação relacionada.",
+        "equipment": "Instrumentos de registro, lentes, credencial e arma simples.",
+        "skillBonus": {
+          "Investigação": 1,
+          "História": 1
+        }
+      },
+      {
+        "name": "Estrategista do Nexus",
+        "base": "Estrategista",
+        "summary": "Analista de operações, formações e riscos calculados.",
+        "talent": "Plano Contingente: uma vez por cena, quando um aliado falhar, conceda +2 à próxima tentativa diferente de resolver o mesmo problema.",
+        "equipment": "Mapa tático, foco de comando, marcador geométrico e arma simples."
+      },
+      {
+        "name": "Arcanista Geométrico",
+        "base": "Escriba Rúnico",
+        "summary": "Técnico de selos, campos de energia e padrões arcanos.",
+        "talent": "Geometria Estável: a primeira área criada por um poder em cada cena pode excluir um aliado do efeito.",
+        "equipment": "Foco geométrico, compasso rúnico, cristais e códice."
+      },
+      {
+        "name": "Investigador Psíquico",
+        "base": "Investigador",
+        "summary": "Agente treinado para detectar manipulação mental, memórias artificiais e ilusões conscientes.",
+        "talent": "Âncora Mental: uma vez por cena, receba vantagem para resistir a Confusão ou ilusão e identifique sua origem aproximada.",
+        "equipment": "Foco mental, registros lacrados, arma discreta e cristais de memória.",
+        "skillBonus": {
+          "Resistência Mental": 1,
+          "Investigação": 1
+        }
+      },
+      {
+        "name": "Engenheiro de Ressonância",
+        "base": "Alquimista",
+        "summary": "Construtor de pontes de energia, autômatos e amplificadores arcanos.",
+        "talent": "Calibrar Estrutura: em uma pausa, conceda +2 no próximo teste de Engenharia do grupo ou restaure um dispositivo simples.",
+        "equipment": "Ferramentas arcanas, cristais azuis, luvas e peças de reposição.",
+        "skillBonus": {
+          "Engenharia": 1,
+          "Concentração": 1
+        }
+      },
+      {
+        "name": "Observador Estelar",
+        "base": "Navegador Celeste",
+        "summary": "Estudioso das ilhas móveis, correntes celestes e fenômenos do céu.",
+        "talent": "Previsão de Rota: antes de uma viagem, identifique a ameaça ambiental mais provável e conceda +2 para evitá-la.",
+        "equipment": "Luneta, mapas estelares, instrumentos de cálculo e arma leve.",
+        "skillBonus": {
+          "Percepção": 1,
+          "Estratégia": 1
+        }
+      },
+      {
+        "name": "Agente Analítico",
+        "base": "Espião",
+        "summary": "Operador externo do Nexus, treinado para infiltração sem perder disciplina.",
+        "talent": "Perfil Comportamental: após observar um alvo por um turno, receba +2 no próximo teste social ou furtivo contra ele.",
+        "equipment": "Disfarce sóbrio, ferramentas, foco de memória e arma discreta.",
+        "skillBonus": {
+          "Intuição": 1,
+          "Furtividade": 1
+        }
+      }
+    ],
+    "Tsukihana": [
+      {
+        "name": "Samurai de Clã",
+        "base": "Duelista",
+        "summary": "Guerreiro juramentado a uma casa, templo ou senhor de ilha.",
+        "talent": "Juramento da Lâmina: escolha um dever na cena; ao agir diretamente por ele, receba +1 Defesa até o próximo turno.",
+        "equipment": "Lâmina cerimonial, armadura leve ou média, brasão e kit de viagem."
+      },
+      {
+        "name": "Shinobi",
+        "base": "Espião",
+        "summary": "Infiltrador, mensageiro secreto ou assassino a serviço de um clã.",
+        "talent": "Passo entre Sombras: após usar Furtividade com sucesso, mova 2m sem provocar reação.",
+        "equipment": "Armas discretas, ferramentas, máscara e bombas de fumaça."
+      },
+      {
+        "name": "Sacerdote Lunar",
+        "base": "Sacerdote",
+        "summary": "Devoto de Nyx ou guardião de ritos lunares e juramentos quebrados.",
+        "talent": "Véu da Lua: uma vez por cena, conceda +2 Defesa a um aliado em penumbra até o próximo turno.",
+        "equipment": "Símbolo lunar, vestes rituais, sinos e lâmina curta.",
+        "skillBonus": {
+          "Rituais": 1,
+          "Ocultismo": 1
+        }
+      },
+      {
+        "name": "Ritualista de Espíritos",
+        "base": "Guardião Funerário",
+        "summary": "Médium e exorcista que negocia com ancestrais, máscaras e sombras de juramento.",
+        "talent": "Etiqueta Espiritual: espíritos não hostis iniciam encontros um passo mais receptivos quando o ritual correto é respeitado.",
+        "equipment": "Talismãs, máscara ritual, sal, incenso e arma cerimonial.",
+        "skillBonus": {
+          "Rituais": 1,
+          "Intuição": 1
+        },
+        "statBonus": {
+          "pe": 4
+        }
+      },
+      {
+        "name": "Ferreiro Cerimonial",
+        "base": "Alquimista",
+        "summary": "Artesão de armas de clã, armaduras e objetos com significado espiritual.",
+        "talent": "Nome da Arma: após um descanso longo, nomeie e prepare uma arma; seu primeiro acerto crítico causa +1d6.",
+        "equipment": "Ferramentas de forja, martelo, inscrições e materiais de reparo.",
+        "skillBonus": {
+          "Engenharia": 1,
+          "Ocultismo": 1
+        }
+      },
+      {
+        "name": "Arqueiro de Templo",
+        "base": "Caçador",
+        "summary": "Guardião de portões, pontes vermelhas e santuários nas montanhas.",
+        "talent": "Flecha de Advertência: ao acertar um alvo que se aproxima de local protegido, reduza seu movimento em 2m.",
+        "equipment": "Arco, aljava, armadura leve e talismã de templo."
+      },
+      {
+        "name": "Curandeiro Hanamori",
+        "base": "Alquimista",
+        "summary": "Especialista em ervas, venenos e flores espirituais do clã Hanamori.",
+        "talent": "Flor de Duas Faces: após descanso longo, prepare uma dose que pode curar 1d6 PV ou causar Veneno Fraco.",
+        "equipment": "Kit herbal, agulhas, frascos e flores espirituais.",
+        "skillBonus": {
+          "Medicina": 1,
+          "Alquimia": 1
+        },
+        "statBonus": {
+          "pe": 2
+        }
+      }
+    ],
+    "Sahra'Nür": [
+      {
+        "name": "Mercador de Miraj",
+        "base": "Mercador Diplomata",
+        "summary": "Negociador de bazar, corretor de informações e especialista em contratos.",
+        "talent": "Cláusula Favorável: uma vez por sessão, descubra uma condição oculta, custo adicional ou interesse real em uma negociação.",
+        "equipment": "Roupas de comércio, documentos, mercadoria de troca e arma discreta."
+      },
+      {
+        "name": "Navegador das Dunas",
+        "base": "Navegador Celeste",
+        "summary": "Guia de caravanas pelo Mar de Areia Suspenso e pelas rotas celestes.",
+        "talent": "Ler Estrelas e Areia: o grupo recebe +2 em viagem por desertos suspensos e ignora a primeira perda de suprimentos.",
+        "equipment": "Instrumentos astronômicos, mapa, véu de areia e arma leve."
+      },
+      {
+        "name": "Guardião de Caravana",
+        "base": "Guerreiro",
+        "summary": "Protetor de mercadores, peregrinos e cargas entre cidades e portos.",
+        "talent": "Formação de Escolta: aliados adjacentes à carga ou ao protegido recebem +1 Defesa contra ataques à distância.",
+        "equipment": "Arma marcial, armadura média, escudo e kit de viagem."
+      },
+      {
+        "name": "Astrônomo de Qamarat",
+        "base": "Estrategista",
+        "summary": "Leitor de estrelas, ilhas móveis e presságios de rota.",
+        "talent": "Janela Celeste: uma vez por sessão, determine o melhor momento próximo para viajar, observar ou realizar um ritual astronômico.",
+        "equipment": "Luneta, cartas estelares, instrumentos de cálculo e vestes leves.",
+        "skillBonus": {
+          "História": 1,
+          "Estratégia": 1
+        },
+        "statBonus": {
+          "pe": 2
+        }
+      },
+      {
+        "name": "Arqueólogo de Ruínas",
+        "base": "Investigador",
+        "summary": "Explorador das ruínas anteriores à Guerra dos Deuses e de tumbas seladas.",
+        "talent": "Camada Antiga: uma vez por cena, identifique a época, cultura ou função provável de uma estrutura ou artefato.",
+        "equipment": "Ferramentas de escavação, registros, corda e arma simples.",
+        "skillBonus": {
+          "História": 1,
+          "Investigação": 1
+        }
+      },
+      {
+        "name": "Alquimista do Deserto",
+        "base": "Alquimista",
+        "summary": "Criador de remédios térmicos, venenos, óleos e explosivos de areia.",
+        "talent": "Reserva Selada: carregue um preparo adicional que não ocupa espaço de inventário e resiste ao calor.",
+        "equipment": "Kit alquímico, máscara, frascos resistentes e reagentes."
+      },
+      {
+        "name": "Contrabandista das Velas Carmesins",
+        "base": "Espião",
+        "summary": "Agente das rotas ilegais, portos ocultos e leilões de relíquias.",
+        "talent": "Manifesto Falso: uma vez por sessão, produza documentação plausível para uma carga pequena ou passagem limitada.",
+        "equipment": "Disfarce mercante, ferramentas, compartimento oculto e arma discreta.",
+        "skillBonus": {
+          "Furtividade": 1,
+          "Persuasão": 1
+        }
+      }
+    ],
+    "Ilhas Derivantes": [
+      {
+        "name": "Navegador Errante",
+        "base": "Navegador Celeste",
+        "summary": "Piloto acostumado a ilhas móveis e rotas que desaparecem por meses.",
+        "talent": "Rota Improvisada: quando uma rota muda, faça imediatamente um teste de Percepção ou Engenharia para evitar atraso ou perigo.",
+        "equipment": "Instrumentos de navegação, mapas incompletos, corda e arma leve."
+      },
+      {
+        "name": "Mercador Itinerante",
+        "base": "Mercador Diplomata",
+        "summary": "Comerciante sem território fixo que acompanha mercados temporários.",
+        "talent": "Estoque Oportuno: uma vez por sessão, declare que trouxe um item comum plausível para troca.",
+        "equipment": "Mercadoria variada, documentos de múltiplos portos e arma discreta."
+      },
+      {
+        "name": "Pirata Celeste",
+        "base": "Guerreiro",
+        "summary": "Saqueador de navios, ilhas móveis e rotas sem bandeira.",
+        "talent": "Abordagem Violenta: no primeiro turno após entrar em um navio ou plataforma inimiga, receba +2m Movimento e +1 dano.",
+        "equipment": "Arma marcial, gancho, corda, armadura leve e bandeira pessoal.",
+        "skillBonus": {
+          "Atletismo": 1,
+          "Intimidação": 1
+        },
+        "statBonus": {
+          "pv": 2
+        }
+      },
+      {
+        "name": "Cartógrafo de Correntes",
+        "base": "Investigador",
+        "summary": "Registrador das correntes de vento, rotas instáveis e ilhas desaparecidas.",
+        "talent": "Mapa em Movimento: após observar uma área por dez minutos, o grupo recebe +2 para retornar pelo mesmo caminho.",
+        "equipment": "Mapas, bússola celeste, instrumentos de desenho e arma simples.",
+        "skillBonus": {
+          "Engenharia": 1,
+          "Investigação": 1
+        }
+      },
+      {
+        "name": "Caçador de Tempestades",
+        "base": "Caçador",
+        "summary": "Batedor que persegue fenômenos celestes e criaturas atraídas por tempestades.",
+        "talent": "Olho da Tormenta: resistência a penalidades de visão e movimento causadas por vento ou chuva intensa.",
+        "equipment": "Arma à distância, capa reforçada, para-raios e kit de sobrevivência."
+      },
+      {
+        "name": "Contrabandista Errante",
+        "base": "Espião",
+        "summary": "Transportador de pessoas, cultos e mercadorias entre ilhas sem governo estável.",
+        "talent": "Porto Amigo: uma vez por sessão, encontre um abrigo discreto ou contato menor em uma zona móvel.",
+        "equipment": "Ferramentas, compartimento oculto, disfarce e arma leve."
+      }
+    ],
+    "Campo das Ilhas Destroçadas": [
+      {
+        "name": "Caçador de Relíquias",
+        "base": "Investigador",
+        "summary": "Explorador que busca artefatos entre ruínas giratórias e fragmentos da Guerra Divina.",
+        "talent": "Instinto de Relíquia: uma vez por cena, detecte qual objeto próximo possui maior carga mágica ou histórica.",
+        "equipment": "Ferramentas de coleta, corda, recipientes selados e arma simples.",
+        "skillBonus": {
+          "Investigação": 1,
+          "Ocultismo": 1
+        }
+      },
+      {
+        "name": "Saqueador de Ruínas",
+        "base": "Espião",
+        "summary": "Especialista em entrar, retirar valor e sair antes que a estrutura desabe.",
+        "talent": "Saída Marcada: ao entrar em uma ruína, marque uma rota; receba +2 para escapar por ela durante a cena.",
+        "equipment": "Ferramentas, arma discreta, ganchos e bolsas reforçadas.",
+        "skillBonus": {
+          "Furtividade": 1,
+          "Acrobacia": 1
+        }
+      },
+      {
+        "name": "Engenheiro de Destroços",
+        "base": "Alquimista",
+        "summary": "Técnico que reaproveita autômatos quebrados, navios e estruturas instáveis.",
+        "talent": "Remendo Improvável: uma vez por cena, faça um dispositivo quebrado funcionar por alguns minutos.",
+        "equipment": "Ferramentas arcanas, peças, cristais instáveis e proteção ocular.",
+        "skillBonus": {
+          "Engenharia": 1,
+          "Alquimia": 1
+        }
+      },
+      {
+        "name": "Mercenário de Recuperação",
+        "base": "Guerreiro",
+        "summary": "Combatente contratado para proteger equipes de exploração e cargas raras.",
+        "talent": "Prioridade da Carga: ao proteger um objeto ou aliado designado, +1 Defesa e +2 contra empurrões.",
+        "equipment": "Arma marcial, armadura média, cordas e contrato."
+      },
+      {
+        "name": "Ocultista de Fragmentos",
+        "base": "Escriba Rúnico",
+        "summary": "Estudioso dos ecos da Guerra dos Deuses, selos quebrados e essência instável.",
+        "talent": "Leitura de Ruptura: uma vez por cena, identifique se uma anomalia é divina, abissal, espiritual ou primordial.",
+        "equipment": "Foco rúnico, recipientes de amostra, códice e proteção leve.",
+        "skillBonus": {
+          "Ocultismo": 1,
+          "Concentração": 1
+        }
+      },
+      {
+        "name": "Batedor da Ruptura",
+        "base": "Navegador Celeste",
+        "summary": "Explorador de fragmentos móveis, destroços e passagens que mudam sem padrão.",
+        "talent": "Salto Calculado: vantagem no primeiro teste de movimento entre plataformas instáveis em cada cena.",
+        "equipment": "Gancho, corda, mapa de fragmentos e arma leve.",
+        "skillBonus": {
+          "Acrobacia": 1,
+          "Percepção": 1
+        }
+      }
+    ],
+    "Borda do Abismo": [
+      {
+        "name": "Exorcista da Borda",
+        "base": "Guardião Funerário",
+        "summary": "Especialista em mortos sem Caminho, possessões e influência abissal.",
+        "talent": "Selo de Limiar: uma vez por cena, crie uma linha curta que criaturas espirituais menores hesitam em atravessar.",
+        "equipment": "Arma ritual, sal negro, sinos, correntes e kit funerário."
+      },
+      {
+        "name": "Caçador de Demônios",
+        "base": "Caçador",
+        "summary": "Rastreador de entidades, pactuários deformados e bestas de queda.",
+        "talent": "Marca Abissal: após identificar uma criatura abissal, +1d4 no primeiro dano por rodada contra ela.",
+        "equipment": "Arma à distância, lâmina consagrada, armadilhas e kit de sobrevivência.",
+        "skillBonus": {
+          "Sobrevivência": 1,
+          "Ocultismo": 1
+        }
+      },
+      {
+        "name": "Contrabandista Abissal",
+        "base": "Espião",
+        "summary": "Transportador de relíquias, exilados e mercadorias que regiões superiores proíbem.",
+        "talent": "Conhecer o Preço: uma vez por sessão, identifique quem compraria, esconderia ou destruiria um objeto proibido.",
+        "equipment": "Disfarce, compartimentos ocultos, ferramentas e arma discreta.",
+        "skillBonus": {
+          "Furtividade": 1,
+          "Intuição": 1
+        }
+      },
+      {
+        "name": "Vigia das Correntes",
+        "base": "Guerreiro",
+        "summary": "Sentinela de pontes partidas, correntes antigas e postos de fronteira.",
+        "talent": "Âncora do Limiar: não pode ser movido contra a vontade enquanto estiver adjacente a uma estrutura firme.",
+        "equipment": "Arma de haste, armadura média, gancho e lanterna."
+      },
+      {
+        "name": "Sobrevivente do Limiar",
+        "base": "Navegador Celeste",
+        "summary": "Guia de baixa luz, ruínas caídas e rotas próximas ao vazio.",
+        "talent": "Instinto de Queda: uma vez por cena, repita um teste de Reflexos ou Sobrevivência contra queda, desabamento ou terreno instável.",
+        "equipment": "Corda, ganchos, máscara, suprimentos e arma leve.",
+        "skillBonus": {
+          "Reflexos": 1,
+          "Sobrevivência": 1
+        },
+        "statBonus": {
+          "pv": 2
+        }
+      },
+      {
+        "name": "Guardião de Exilados",
+        "base": "Mercador Diplomata",
+        "summary": "Mediador e protetor de comunidades rejeitadas na fronteira inferior.",
+        "talent": "Rede dos Sem Bandeira: uma vez por sessão, encontre abrigo ou informação básica entre exilados locais.",
+        "equipment": "Símbolo comunitário, documentos falsos, suprimentos e arma simples.",
+        "skillBonus": {
+          "Persuasão": 1,
+          "Resistência Mental": 1
+        },
+        "statBonus": {
+          "pv": 2
+        }
+      }
+    ],
+    "Abismo": [
+      {
+        "name": "Pactuário Abissal",
+        "base": "Escriba Rúnico",
+        "summary": "Mortal que estuda e utiliza cláusulas gravadas na alma por entidades do Abismo.",
+        "talent": "Cláusula de Emergência: uma vez por sessão, reduza em 2 PE um poder abissal e ganhe 1 Corrupção.",
+        "equipment": "Marca de pacto, foco abissal, códice de cláusulas e arma simples.",
+        "skillBonus": {
+          "Ocultismo": 1,
+          "Resistência Mental": 1
+        },
+        "statBonus": {
+          "pe": 4
+        }
+      },
+      {
+        "name": "Caçador Abissal",
+        "base": "Caçador",
+        "summary": "Predador de feras de carne, demônios menores e pactuários transformados.",
+        "talent": "Predador do Predador: quando uma criatura abissal causar dano em você, +2 no próximo ataque contra ela.",
+        "equipment": "Arma à distância, lâmina pesada, armadilhas e troféus."
+      },
+      {
+        "name": "Explorador da Superfície",
+        "base": "Navegador Celeste",
+        "summary": "Guia das ruínas do antigo mundo, túneis e zonas espiritualmente deformadas.",
+        "talent": "Memória do Solo: +2 em História ou Sobrevivência para interpretar estruturas da Era do Solo.",
+        "equipment": "Mapa incompleto, lanterna, corda, máscara e arma leve.",
+        "skillBonus": {
+          "História": 1,
+          "Sobrevivência": 1
+        }
+      },
+      {
+        "name": "Cirurgião de Carne",
+        "base": "Alquimista",
+        "summary": "Curandeiro ou modificador que trabalha com corpos alterados e matéria abissal.",
+        "talent": "Sutura Impossível: uma vez por cena, cure 1d6 PV; o alvo sofre -1 em Resistência à Corrupção até o descanso.",
+        "equipment": "Instrumentos cirúrgicos, reagentes, máscara e recipientes.",
+        "skillBonus": {
+          "Medicina": 1,
+          "Alquimia": 1
+        },
+        "statBonus": {
+          "pe": 2
+        }
+      },
+      {
+        "name": "Exilado Celestial",
+        "base": "Guerreiro",
+        "summary": "Antigo servidor das regiões superiores ou dos céus que aprendeu a sobreviver abaixo.",
+        "talent": "Disciplina Quebrada: uma vez por cena, ignore Medo ou uma ordem de autoridade sobrenatural.",
+        "equipment": "Arma antiga, armadura danificada, insígnia removida e suprimentos.",
+        "skillBonus": {
+          "Resistência Mental": 1,
+          "Atletismo": 1
+        },
+        "statBonus": {
+          "pv": 4
+        }
+      },
+      {
+        "name": "Coletor de Almas",
+        "base": "Guardião Funerário",
+        "summary": "Especialista perigoso em localizar, transportar ou aprisionar fragmentos de alma.",
+        "talent": "Recipiente Espiritual: carregue com segurança uma alma ou eco menor por uma cena, sob decisão do mestre.",
+        "equipment": "Recipiente selado, corrente ritual, foco espiritual e arma curta.",
+        "skillBonus": {
+          "Ocultismo": 1,
+          "Rituais": 1
+        },
+        "statBonus": {
+          "pe": 4
+        }
+      }
+    ]
   },
   "talents": [
     {
