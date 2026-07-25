@@ -7,6 +7,47 @@ const clamp = (n,min,max) => Math.max(min,Math.min(max,n));
 const esc = (v='') => String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const ALL_SKILLS = D.skills.flatMap(g=>g.items.map(name=>({name,attr:g.attr,group:g.group})));
 const SKILL_ATTR = Object.fromEntries(ALL_SKILLS.map(s=>[s.name,s.attr]));
+const REGIONAL_PROFESSION_MAP = {};
+Object.entries(D.regionalProfessions||{}).forEach(([region,items])=>items.forEach(item=>{
+  REGIONAL_PROFESSION_MAP[item.name]={...item,region};
+}));
+
+function resolveProfession(name){
+  const direct=D.professions[name];
+  if(direct)return {...direct,name,region:'Geral',base:name};
+  const regional=REGIONAL_PROFESSION_MAP[name];
+  if(!regional)return null;
+  const base=D.professions[regional.base]||{};
+  return {
+    ...base,
+    ...regional,
+    name:regional.name,
+    region:regional.region,
+    base:regional.base,
+    skillBonus:regional.skillBonus||base.skillBonus||{},
+    statBonus:{...(base.statBonus||{}),...(regional.statBonus||{})},
+  };
+}
+
+function updateProfessionOptions({keepCurrent=true}={}){
+  const select=$('f-profissao');
+  const region=$('f-regiao')?.value||'';
+  const regional=D.regionalProfessions?.[region]||[];
+  const general=Object.keys(D.professions);
+  const allowed=new Set([...regional.map(p=>p.name),...general]);
+  if(!keepCurrent && state.profession && !allowed.has(state.profession))state.profession='';
+  let html='<option value="">— Selecione —</option>';
+  if(regional.length){
+    html+=`<optgroup label="Profissões de ${esc(region)}">${regional.map(p=>`<option value="${esc(p.name)}">${esc(p.name)}</option>`).join('')}</optgroup>`;
+  }
+  html+=`<optgroup label="Profissões gerais / estrangeiros">${general.map(name=>`<option value="${esc(name)}">${esc(name)}</option>`).join('')}</optgroup>`;
+  if(state.profession && !allowed.has(state.profession) && resolveProfession(state.profession)){
+    const saved=resolveProfession(state.profession);
+    html+=`<optgroup label="Profissão salva de outra região"><option value="${esc(state.profession)}">${esc(state.profession)} — ${esc(saved.region)}</option></optgroup>`;
+  }
+  select.innerHTML=html;
+  select.value=state.profession;
+}
 
 function defaultState(){
   const training={}; ALL_SKILLS.forEach(s=>training[s.name]=0);
@@ -49,7 +90,7 @@ function fillSelect(el, values, placeholder='— Selecione —', mapper=v=>({val
 function initStatic(){
   fillSelect($('f-regiao'),D.regions,'— Selecione —');
   fillSelect($('f-raca'),Object.keys(D.races),'— Selecione —',k=>({value:k,label:D.races[k].label}));
-  fillSelect($('f-profissao'),Object.keys(D.professions),'— Selecione —');
+  updateProfessionOptions();
   fillSelect($('f-caminho'),Object.keys(D.paths),'— Selecione —');
   fillSelect($('f-patrono'),Object.keys(D.blessings),'— Sem patrono —');
   fillSelect($('f-capstone'),D.capstones,'— Nenhuma —',c=>({value:c.id,label:c.name}));
@@ -99,6 +140,7 @@ function bindEvents(){
   $('export-btn').addEventListener('click',exportSheet); $('import-btn').addEventListener('click',()=>$('import-file').click()); $('import-file').addEventListener('change',importSheet);
   $('level-up-btn').addEventListener('click',()=>{state.level=clamp(state.level+1,1,10);renderAll()});
   $('level-down-btn').addEventListener('click',()=>{state.level=clamp(state.level-1,1,10);renderAll()});
+  $('f-regiao').addEventListener('change',()=>{updateProfessionOptions({keepCurrent:false});renderAll()});
   $('f-raca').addEventListener('change',e=>{state.race=e.target.value;renderAll()});
   $('f-avaris-lineage').addEventListener('change',e=>{state.avarisLineage=e.target.value;renderAll()});
   $('f-profissao').addEventListener('change',e=>{state.profession=e.target.value;renderAll()});
@@ -137,7 +179,7 @@ function bindEvents(){
 function toggleArray(arr,value,checked){const i=arr.indexOf(value);if(checked&&i<0)arr.push(value);if(!checked&&i>=0)arr.splice(i,1)}
 function cssId(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
 function statBonus(source,key){return source?.statBonus?.[key]||0}
-function profession(){return D.professions[state.profession]||null}
+function profession(){return resolveProfession(state.profession)}
 function race(){return D.races[state.race]||null}
 function armor(){return D.armors.find(a=>a.name===state.armor)||D.armors[0]}
 function weapon(){return D.weapons.find(w=>w.name===state.weapon)||D.weapons[0]}
@@ -176,6 +218,7 @@ function renderAll(){
   state.training={...defaultState().training,...state.training};
   state.pvLoss=clamp(Number(state.pvLoss)||0,0,pvMax()); state.peSpent=clamp(Number(state.peSpent)||0,0,peMax()); state.soulLoss=clamp(Number(state.soulLoss)||0,0,soulMax());
   state.favor=clamp(Number(state.favor)||0,0,favorMax());
+  updateProfessionOptions({keepCurrent:true});
   $('f-raca').value=state.race; $('f-avaris-lineage').value=state.avarisLineage; $('f-profissao').value=state.profession; $('f-caminho').value=state.path; $('f-capstone').value=state.capstone;
   $('f-patrono').value=state.patron; $('f-favor').max=favorMax(); $('f-favor').value=state.favor;
   $('f-armadura').value=state.armor; $('f-escudo').value=state.shield?'sim':'nao'; $('f-arma').value=state.weapon; $('f-slots-used').value=state.slotsUsed;
@@ -191,7 +234,7 @@ function renderLevel(){
 function renderRaceProfessionPath(){
   $('avaris-lineage-wrap').classList.toggle('hidden',state.race!=='avaris');
   const r=race(); $('race-info').innerHTML=r?`<strong>${esc(r.label)}</strong><br>${esc(r.summary)}<br>${r.traits.map(t=>`<span class="tag">${esc(t.name)}</span> ${esc(t.effect)}`).join('<br>')}`:'Selecione uma raça.';
-  const p=profession(); $('profession-info').innerHTML=p?`<strong>${esc(state.profession)}</strong><br>${esc(p.summary)}<br><span class="tag">Talento profissional</span> ${esc(p.talent)}<br><span class="tag">Equipamento</span> ${esc(p.equipment)}`:'Selecione uma profissão.';
+  const p=profession(); $('profession-info').innerHTML=p?`<strong>${esc(state.profession)}</strong><br><span class="tag tag-teal">${p.region==='Geral'?'Profissão geral':`Tradição de ${esc(p.region)}`}</span>${p.region!=='Geral'?` <span class="tag">Base: ${esc(p.base)}</span>`:''}<br>${esc(p.summary)}<br><span class="tag">Talento profissional</span> ${esc(p.talent)}<br><span class="tag">Equipamento</span> ${esc(p.equipment)}`:`Selecione uma região para ver suas profissões locais, ou escolha uma profissão geral.`;
   const path=D.paths[state.path]; $('path-info').innerHTML=path?`<strong>${esc(state.path)}</strong><br>${esc(path.benefit)}<br><span class="tag tag-red">Limitação</span> ${esc(path.limit)}`:'Selecione um Caminho espiritual.';
 }
 function renderAttributes(){
@@ -341,7 +384,7 @@ function migrateData(raw){
   const f={};f['f-nome']=raw.identity?.nome||'';f['f-jogador']=raw.identity?.jogador||'';f['f-regiao']=raw.identity?.regiao||'';f['f-objetivo']=raw.identity?.promessa||'';f['f-inventario']=raw.inventario||'';f['f-notas']=raw.notas||'';
   migrationNotice='Ficha antiga migrada para a Edição Expandida. Revise atributos, profissão e bênçãos antes de salvar novamente.';return {schemaVersion:2,fields:f,state:s};
 }
-function mapOldProfession(name){const map={'Gladiador':'Guerreiro','Mercenário':'Guerreiro','Guardião Celestial':'Guerreiro','Samurai':'Duelista','Caçador de Bestas':'Caçador','Sacerdote Solar':'Sacerdote','Sacerdote Funerário':'Sacerdote','Escriba de Toth':'Escriba Rúnico','Arquivista':'Investigador','Inquisidor':'Investigador','Arqueólogo':'Investigador','Arcanista':'Escriba Rúnico','Ferreiro':'Alquimista','Ferreiro Cerimonial':'Alquimista','Navegador das Dunas':'Navegador Celeste','Mercador':'Mercador Diplomata','Shinobi':'Espião','Caçador de Relíquias':'Espião','Exorcista':'Guardião Funerário','Guardião das Tumbas':'Guardião Funerário'};return D.professions[name]?name:(map[name]||'')}
+function mapOldProfession(name){const map={'Gladiador':'Gladiador Carmesim','Mercenário':'Mercenário de Clã','Samurai':'Samurai de Clã','Arquivista':'Arquivista do Nexus','Inquisidor':'Inquisidor da Pureza','Arqueólogo':'Arqueólogo de Ruínas','Arcanista':'Arcanista Geométrico','Ferreiro':'Ferreiro de Guerra','Mercador':'Mercador de Miraj'};if(resolveProfession(name))return name;const mapped=map[name]||'';return resolveProfession(mapped)?mapped:''}
 
 /* API/auth/save */
 async function api(path,options={}){const opts={...options,headers:{'Content-Type':'application/json',...(options.headers||{})}};const res=await fetch(path,opts);const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||'Erro na requisição');return data}
