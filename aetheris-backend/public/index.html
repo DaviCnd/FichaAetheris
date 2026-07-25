@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ficha interativa do RPG Aetheris, adaptada ao Grimório de Aetheris — Edição Expandida.">
+  <title>Aetheris — Ficha Expandida</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div id="auth-overlay" class="auth-overlay">
+  <div class="panel auth-card">
+    <h2><span class="bar"></span>Entrar em Aetheris</h2>
+    <div class="field"><label>Usuário</label><input type="text" id="auth-username" autocomplete="username"></div>
+    <div class="field" style="margin-top:12px"><label>Senha</label><input type="password" id="auth-password" autocomplete="current-password"></div>
+    <div class="auth-actions">
+      <button class="btn btn-primary" id="login-btn">Entrar</button>
+      <button class="btn btn-gold" id="register-btn">Criar conta</button>
+    </div>
+    <div id="auth-status" class="status-msg"></div>
+    <div class="section-note">As fichas ficam salvas no servidor e vinculadas à conta.</div>
+  </div>
+</div>
+
+<main class="sheet hidden" id="app-content">
+  <header class="header">
+    <div class="eyebrow">Grimório de Aetheris</div>
+    <h1>AETHERIS</h1>
+    <p>Ficha interativa — Edição Expandida <span class="version-chip">v2</span></p>
+    <div class="session-line">Logado como <strong id="whoami"></strong> · <button class="btn btn-small no-print hidden" id="master-toggle-btn">Painel do Mestre</button> <button class="btn btn-small no-print" id="logout-btn">Sair</button></div>
+  </header>
+
+  <section class="panel hidden" id="master-panel">
+    <h2><span class="bar"></span>Painel do Mestre</h2>
+    <div class="section-note">Todas as fichas salvas. A visualização é somente leitura.</div>
+    <div class="table-scroll"><table class="data-table"><thead><tr><th>Jogador</th><th>Ficha</th><th>Atualizada</th><th></th></tr></thead><tbody id="master-body"></tbody></table></div>
+  </section>
+
+  <section class="panel hidden" id="master-view-banner">
+    <h2><span class="bar"></span>Visualizando ficha de <span id="master-view-who"></span></h2>
+    <div class="actions"><span class="section-note" style="margin:0">Modo somente leitura.</span><button class="btn btn-gold" id="exit-master-btn">Voltar</button></div>
+  </section>
+
+  <section class="panel no-print" id="save-panel">
+    <h2><span class="bar"></span>Fichas Salvas</h2>
+    <div class="grid grid-3" style="align-items:end">
+      <div class="field"><label>Nome para salvar</label><input type="text" id="save-name" placeholder="Ex.: Sarya, Mensageira de Hórus"></div>
+      <div class="field"><label>Fichas da conta</label><select id="sheet-select"><option value="">— nenhuma salva —</option></select></div>
+      <div class="actions">
+        <button class="btn btn-gold" id="save-btn">Salvar</button><button class="btn" id="load-btn">Carregar</button><button class="btn btn-danger" id="delete-btn">Excluir</button><button class="btn" id="new-btn">Nova</button>
+      </div>
+    </div>
+    <div id="save-status" class="status-msg"></div>
+    <div class="actions" style="margin-top:8px"><button class="btn" id="export-btn">Exportar .json</button><button class="btn" id="import-btn">Importar .json</button><input type="file" id="import-file" accept=".json" class="hidden"></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>1. Identidade e Conceito</h2>
+    <div class="grid grid-4">
+      <div class="field"><label>Nome</label><input id="f-nome" type="text"></div>
+      <div class="field"><label>Jogador</label><input id="f-jogador" type="text"></div>
+      <div class="field"><label>Região de origem</label><select id="f-regiao"></select></div>
+      <div class="field"><label>Origem específica</label><input id="f-origem" type="text" placeholder="Cidade, clã, ilha ou templo"></div>
+      <div class="field span-2"><label>Conceito</label><input id="f-conceito" type="text" placeholder="Origem + função + conflito"></div>
+      <div class="field"><label>Objetivo</label><input id="f-objetivo" type="text"></div>
+      <div class="field"><label>Medo</label><input id="f-medo" type="text"></div>
+      <div class="field"><label>Vínculo</label><input id="f-vinculo" type="text"></div>
+      <div class="field"><label>Dívida</label><input id="f-divida" type="text"></div>
+      <div class="field span-2"><label>Verdade inegociável</label><input id="f-verdade" type="text"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>2. Nível e Progressão</h2>
+    <div class="level-box">
+      <div class="level-badge" id="level-badge">1</div>
+      <div>
+        <div class="progress-row no-print"><button class="btn" id="level-down-btn">− Nível</button><button class="btn btn-primary" id="level-up-btn">+ Nível</button><span class="section-note" style="margin:0">Progressão por marcos, do nível 1 ao 10.</span></div>
+        <div class="progression-strip" id="progression-strip"></div>
+      </div>
+    </div>
+    <div class="info-box" id="level-gain-info" style="margin-top:14px"></div>
+    <div class="grid grid-2" style="margin-top:12px">
+      <div class="field"><label>Melhoria de Profissão (nível 6)</label><input id="f-prof-upgrade" type="text" placeholder="Defina com o mestre"></div>
+      <div class="field"><label>Escolha especial / marco</label><input id="f-level-choice" type="text" placeholder="Nova bênção, pacto, poder ou outra escolha"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>3. Raça, Profissão e Caminho</h2>
+    <div class="grid grid-3">
+      <div class="field"><label>Raça</label><select id="f-raca"></select></div>
+      <div class="field hidden" id="avaris-lineage-wrap"><label>Linhagem Avaris</label><select id="f-avaris-lineage"><option value="alada">Alada</option><option value="nao-alada">Não Alada</option></select></div>
+      <div class="field"><label>Profissão</label><select id="f-profissao"></select></div>
+      <div class="field"><label>Caminho espiritual</label><select id="f-caminho"></select></div>
+    </div>
+    <div class="grid grid-3" style="margin-top:12px">
+      <div class="info-box" id="race-info"></div><div class="info-box" id="profession-info"></div><div class="info-box" id="path-info"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>4. Atributos</h2>
+    <div id="attr-grid" class="attr-grid"></div>
+    <div class="pool-note">Pontos: <strong id="attr-spent">5</strong> / <strong id="attr-pool">12</strong> · Mínimo 1 · Máximo atual <strong id="attr-cap">4</strong></div>
+    <div class="info-box warning-box hidden" id="attr-warning" style="margin-top:12px"></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>5. Status Derivados</h2>
+    <div id="stat-grid" class="stat-grid"></div>
+    <div class="grid grid-3" style="margin-top:12px">
+      <div class="stat-card"><div class="label">PV atual</div><div class="value"><span id="pv-current"></span> / <span id="pv-max"></span></div><div class="bar-outer"><div id="pv-bar" class="bar-inner bar-pv"></div></div><div class="stat-adjust no-print"><button class="stepper" data-adjust="pv" data-dir="-1">−</button><button class="stepper" data-adjust="pv" data-dir="1">+</button><span>Ajustar dano/recuperação</span></div></div>
+      <div class="stat-card"><div class="label">PE atual</div><div class="value"><span id="pe-current"></span> / <span id="pe-max"></span></div><div class="bar-outer"><div id="pe-bar" class="bar-inner bar-pe"></div></div><div class="stat-adjust no-print"><button class="stepper" data-adjust="pe" data-dir="-1">−</button><button class="stepper" data-adjust="pe" data-dir="1">+</button><span>Ajustar gasto/recuperação</span></div></div>
+      <div class="stat-card"><div class="label">Integridade atual</div><div class="value"><span id="soul-current"></span> / <span id="soul-max"></span></div><div class="bar-outer"><div id="soul-bar" class="bar-inner bar-soul"></div></div><div class="stat-adjust no-print"><button class="stepper" data-adjust="soul" data-dir="-1">−</button><button class="stepper" data-adjust="soul" data-dir="1">+</button><span>0 = Morte sem Caminho</span></div></div>
+    </div>
+    <div class="actions no-print" style="margin-top:12px"><button class="btn" id="pause-rest">Pausa: recuperar PE</button><button class="btn" id="short-rest">Descanso curto</button><button class="btn" id="long-rest">Descanso longo</button><label style="font-size:12px;color:var(--muted)"><input type="checkbox" id="safe-shelter"> abrigo seguro</label></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>6. Perícias</h2>
+    <div class="pool-note" style="margin:0 0 10px">Treino: <strong id="train-spent">0</strong> / <strong id="train-pool">8</strong> · Maestrias disponíveis: <strong id="mastery-used">0</strong> / <strong id="mastery-slots">0</strong></div>
+    <div class="table-scroll"><table class="data-table"><thead><tr><th>Perícia</th><th>Atributo</th><th>Raça</th><th>Profissão</th><th>Treino</th><th>Total</th><th>Passivo</th></tr></thead><tbody id="skills-body"></tbody></table></div>
+    <div class="info-box warning-box hidden" id="training-warning" style="margin-top:12px"></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>7. Talentos e Capstone</h2>
+    <div class="pool-note" style="margin:0 0 12px">Talentos selecionados: <strong id="talent-count">0</strong> / <strong id="talent-slots">0</strong></div>
+    <div id="talents-grid" class="check-grid"></div>
+    <div class="field" style="margin-top:14px"><label>Capstone (nível 10)</label><select id="f-capstone"></select></div>
+    <div id="capstone-info" class="info-box" style="margin-top:10px"></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>8. Patrono, Favor e Bênçãos</h2>
+    <div class="grid grid-3">
+      <div class="field"><label>Divindade patrona</label><select id="f-patrono"></select></div>
+      <div class="field"><label>Dogma / voto</label><input id="f-dogma" type="text"></div>
+      <div class="favor-row"><div class="field"><label>Favor Divino</label><input id="f-favor" type="range" min="0" max="5" value="2"></div><div id="favor-badge" class="favor-badge">2</div></div>
+    </div>
+    <div id="god-info" class="info-box" style="margin-top:12px"></div>
+    <div class="grid grid-2" style="margin-top:12px">
+      <div class="field"><label>Manifestação de corrupção divina</label><textarea id="f-divine-corruption"></textarea></div>
+      <div class="field"><label>Milagre desejado / observações</label><textarea id="f-milagre"></textarea></div>
+    </div>
+    <h3>Bênçãos aprendidas</h3>
+    <div id="blessings-grid" class="blessing-grid"></div>
+    <div class="info-box" id="blessing-guidance" style="margin-top:12px"></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>9. Pacto e Corrupção</h2>
+    <div class="grid grid-3">
+      <div class="field"><label>Entidade</label><input id="p-entidade" type="text"></div><div class="field"><label>Desejo</label><input id="p-desejo" type="text"></div><div class="field"><label>Dádiva</label><input id="p-dadiva" type="text"></div>
+      <div class="field"><label>Preço</label><input id="p-preco" type="text"></div><div class="field"><label>Marca</label><input id="p-marca" type="text"></div><div class="field"><label>Cláusula</label><input id="p-clausula" type="text"></div>
+    </div>
+    <div class="grid grid-3" style="margin-top:12px">
+      <div class="stat-card"><div class="label">Corrupção</div><div class="value"><span id="corr-current">0</span> / 10</div><div class="bar-outer"><div id="corr-bar" class="bar-inner bar-corr"></div></div><div class="stat-adjust no-print"><button class="stepper" data-counter="corruption" data-dir="-1">−</button><button class="stepper" data-counter="corruption" data-dir="1">+</button></div></div>
+      <div class="field"><label>Manifestação atual</label><textarea id="f-corruption-manifestation"></textarea></div>
+      <div class="field"><label>Resistência penalizada (Corrupção 3+)</label><input id="f-corruption-penalty" type="text"></div>
+    </div>
+    <div id="corruption-info" class="info-box" style="margin-top:12px"></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>10. Poderes Personalizados</h2>
+    <div class="section-note">O custo final é pago em PE. Tipos adicionais não somam novos dados-base. Limitações nunca reduzem o custo abaixo de 1.</div>
+    <div id="powers-list"></div>
+    <button class="btn btn-gold no-print" id="add-power-btn">+ Criar poder</button>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>11. Equipamentos e Inventário</h2>
+    <div class="grid grid-4">
+      <div class="field"><label>Armadura</label><select id="f-armadura"></select></div>
+      <div class="field"><label>Escudo</label><select id="f-escudo"><option value="nao">Não</option><option value="sim">Sim (+1 Defesa)</option></select></div>
+      <div class="field"><label>Arma principal</label><select id="f-arma"></select></div>
+      <div class="field"><label>Espaços usados</label><input id="f-slots-used" type="number" min="0" value="0"></div>
+    </div>
+    <div class="grid grid-3" style="margin-top:12px"><div id="armor-info" class="info-box"></div><div id="weapon-info" class="info-box"></div><div class="info-box">Capacidade: <span id="slots-capacity" class="slots">10</span> espaços.<br><span id="encumbrance-info"></span></div></div>
+    <h3>Consumíveis</h3><div id="consumables-grid" class="check-grid"></div>
+    <div class="grid grid-2" style="margin-top:14px"><div class="field"><label>Inventário detalhado</label><textarea id="f-inventario" rows="6"></textarea></div><div class="field"><label>Relíquias, componentes e itens raros</label><textarea id="f-reliquias" rows="6"></textarea></div></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>12. Condições, Ferimentos e Morte</h2>
+    <div id="conditions-grid" class="condition-grid"></div>
+    <div class="death-track" style="margin-top:14px"><div class="death-card"><strong>Sucessos de Caminho</strong><div class="death-circles" id="death-success"></div></div><div class="death-card"><strong>Falhas de Caminho</strong><div class="death-circles" id="death-fail"></div></div></div>
+    <div class="info-box" style="margin-top:12px">A 0 PV: 1d20 + Vontade contra DT 10. Três sucessos estabilizam; três falhas matam. 20 natural recupera 1 PV; 1 natural vale duas falhas.</div>
+    <div class="grid grid-2" style="margin-top:12px"><div class="field"><label>Ferimentos e cicatrizes</label><textarea id="f-ferimentos"></textarea></div><div class="field"><label>Efeitos contínuos e duração</label><textarea id="f-efeitos-continuos"></textarea></div></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>13. Reputação, Favores e Dívidas</h2>
+    <div id="reputation-list"></div><button class="btn btn-gold no-print" id="add-reputation-btn">+ Adicionar facção</button>
+    <div class="grid grid-2" style="margin-top:14px"><div class="field"><label>Favores disponíveis</label><textarea id="f-favores"></textarea></div><div class="field"><label>Dívidas e cobranças</label><textarea id="f-dividas-faccao"></textarea></div></div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="bar"></span>14. Anotações</h2>
+    <div class="grid grid-2"><div class="field"><label>História e personalidade</label><textarea id="f-historia" rows="7"></textarea></div><div class="field"><label>Anotações de campanha</label><textarea id="f-notas" rows="7"></textarea></div></div>
+    <details class="rules-details"><summary>Referência rápida do turno</summary><div class="content">Em cada turno: 1 Ação, 1 Movimento, 1 Reação e 1 Interação simples. A Ação pode ser trocada por um segundo Movimento. Poderes usam DT 10 + Atributo-chave + Treino relevante + metade do nível.</div></details>
+  </section>
+
+  <footer>Aetheris — Ficha Expandida · <button class="btn btn-small no-print" onclick="window.print()">Imprimir / Salvar em PDF</button></footer>
+</main>
+<script src="/aetheris-data.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
