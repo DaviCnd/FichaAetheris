@@ -9,8 +9,6 @@ window.AETHERIS_DATA = {
     "Sahra'Nür",
     "Ilhas Derivantes",
     "Campo das Ilhas Destroçadas",
-    "Borda do Abismo",
-    "Abismo",
     "Outra"
   ],
   "attributes": [
