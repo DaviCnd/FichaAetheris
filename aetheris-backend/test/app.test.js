@@ -478,3 +478,29 @@ test("appearance is saved per account and does not modify the character", async 
     close();
   }
 });
+
+
+test("custom color preserves dark and pale shades on input and confirmation", async () => {
+  const { w, close } = await setup();
+  try {
+    const root = w.document.documentElement;
+    const picker = w.document.getElementById("appearance-color");
+    w.AetherisAppearance.setAccount("CustomColor");
+    for (const [color, event, text] of [
+      ["#100218", "input", "#ffffff"],
+      ["#ffefaa", "change", "#000000"],
+      ["#000000", "change", "#ffffff"],
+      ["#ffffff", "input", "#000000"],
+    ]) {
+      picker.value = color;
+      picker.dispatchEvent(new w.Event(event));
+      assert.equal(root.style.getPropertyValue("--theme-accent"), color);
+      assert.equal(root.style.getPropertyValue("--on-accent"), text);
+      w.document.querySelector("[data-theme-toggle]").click();
+      assert.equal(root.style.getPropertyValue("--theme-accent"), color);
+      w.AetherisAppearance.setAccount("Other");
+      w.AetherisAppearance.setAccount("CustomColor");
+      assert.equal(root.style.getPropertyValue("--theme-accent"), color);
+    }
+  } finally { close(); }
+});

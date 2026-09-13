@@ -185,9 +185,6 @@
   --paper-hi: var(--dark-raised);
   --paper-deep: var(--dark-raised);
   --line: var(--dark-border);
-  --theme-accent: hsl(
-    var(--accent-h, 215) clamp(0%, var(--accent-s, 43.5%), 75%) 42%
-  );
 }
 :root[data-theme="dark"] body,
 :root[data-theme="dark"] .auth-overlay {
