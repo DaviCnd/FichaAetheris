@@ -54,3 +54,13 @@
 - O banco existente continua válido porque as fichas são armazenadas como JSON.
 - Fichas antigas são convertidas automaticamente quando abertas.
 - Após a conversão, atributos, profissão e bênçãos devem ser revisados antes de salvar.
+
+## 2.3.0
+
+- Corrige condição invertida do autosave, preserva rascunhos locais e bloqueia navegação após falha de gravação.
+- Adiciona controle de versão para impedir sobrescrita entre abas; limpa estado ao sair, excluir e trocar de conta; preserva a ficha do mestre durante consulta somente leitura.
+- Identifica mestre pelo ID da conta; restringe nomes duplicados, valida entrada, revoga sessões no logout e exige segredo forte em produção.
+- Protege retratos/importações contra conteúdo HTML indevido.
+- Revisa validação, contextos raciais, condições, talentos, descanso por cena e Integridade permanente.
+- Adiciona leitor flutuante do Grimório com sumário, busca, páginas e texto.
+- Inclui testes locais e verificação automática em pull requests.

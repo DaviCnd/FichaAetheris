@@ -1,36 +1,48 @@
-# Aetheris — Arquivo de Personagens v2.2
+# Aetheris — Arquivo de Personagens v2.3
 
-Site de fichas do RPG **Aetheris**, revisado para o **Grimório de Aetheris — Edição Expandida** e redesenhado para acompanhar a identidade visual do Grimório e do Livro de Lore.
+Ficha baseada no Grimório de Aetheris — Edição Expandida, com biblioteca de personagens, contas, painel do mestre somente leitura e consulta ao livro.
 
-## Destaques da v2.2
+## Executar
 
-- interface de pergaminho, molduras douradas e capítulos escuros inspirada nos livros de Aetheris;
-- biblioteca visual para escolher fichas já criadas e iniciar novas;
-- retrato do personagem salvo junto da ficha;
-- abas separadas para **Ficha**, **Inventário** e **Anotações**;
-- painel de conformidade durante a criação do personagem;
-- 8 raças jogáveis e **somente as 12 profissões oficiais** do Grimório;
-- atributos, perícias, status derivados, Favor, Corrupção, pactos, talentos, equipamentos e criação de poderes revisados;
-- migração de fichas v2.1: antigas profissões regionais são convertidas para a profissão-base oficial;
-- painel do Mestre e contas continuam disponíveis.
+Na pasta `aetheris-backend`, com Node.js 22 ou superior:
 
-## Rodar localmente
-
-```bash
-npm install
+```sh
+npm ci
 npm start
 ```
 
-Abra `http://localhost:3000`.
+Abra `http://localhost:3000`. Sem configuração de Turso, usa SQLite local (`aetheris.db`). Em desenvolvimento sem `JWT_SECRET`, uma chave temporária é gerada a cada inicialização.
 
-## Variáveis de ambiente
+## Conferir
 
-Copie `.env.example` e configure conforme sua hospedagem. O projeto suporta banco LibSQL/Turso e mantém as fichas isoladas por usuário.
-
-## Conferência do código
-
-```bash
+```sh
 npm run check
+npm test
 ```
 
-O arquivo `REVISAO-GRIMORIO-v2.2.md` resume as principais decisões de fidelidade mecânica desta versão.
+Os testes usam bancos temporários, sem conexão ao banco da campanha. Cobrem contas, permissões, concorrência de gravações, salvamento automático, validação, migração e consulta ao livro.
+
+## Funcionalidades
+
+- Salvamento automático após 900 ms de inatividade, com cópia local de recuperação e aviso ao sair com alterações pendentes.
+- Conflitos entre abas não sobrescrevem silenciosamente a versão mais recente. Exporte antes de usar “Descartar alterações locais”.
+- Fichas incompletas podem ser salvas; o painel informa os requisitos pendentes.
+- Contextos de perícia, postura de Guerreiro, Exaustão, condições de movimento/Defesa e perda permanente de Integridade por ressurreição.
+- Botão flutuante **Grimório**, páginas originais, sumário dos 17 capítulos, atalhos por divindade, pesquisa sem distinguir acentos, leitura em texto e PDF para baixar.
+- Migração de fichas anteriores e preservação das profissões oficiais.
+
+## Configuração
+
+Configure as variáveis no ambiente do processo ou no painel da hospedagem. `.env.example` é uma referência; `npm start` não carrega esse arquivo automaticamente.
+
+- `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN`: armazenamento persistente.
+- `JWT_SECRET`: obrigatório em produção; pelo menos 32 caracteres aleatórios.
+- `NODE_ENV=production`: ativa cookie seguro; requer HTTPS.
+- `ADMIN_USER_ID`: ID da conta que pode consultar as fichas dos jogadores.
+- `ADMIN_USERNAME`: compatibilidade temporária; resolve somente uma conta **já existente, com nome exatamente igual, na inicialização**. Nunca promove uma nova conta registrada.
+- `PORT`: 3000 por padrão.
+- `TRUST_PROXY=1`: use somente atrás de exatamente um proxy confiável.
+
+As sessões antigas exigem novo login após a atualização. Contas e fichas são preservadas; o banco recebe tabelas de sessões e uma coluna de versão de ficha automaticamente.
+
+Veja os limites de automação e decisões não especificadas no livro em [REVISAO-GRIMORIO-v2.3.md](REVISAO-GRIMORIO-v2.3.md).
