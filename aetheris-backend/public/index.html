@@ -10,39 +10,68 @@
     <title>Aetheris — Arquivo de Personagens</title>
     <link rel="icon" href="/aetheris-sigil.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/celestial.css" media="screen" />
   </head>
   <body>
     <div id="auth-overlay" class="auth-overlay">
       <div class="auth-book">
-        <img
-          class="auth-sigil"
-          src="/aetheris-sigil.svg"
-          alt="Símbolo de Aetheris"
-        />
-        <div class="eyebrow">Arquivo Celestial · Sistema de Fichas</div>
-        <h1>AETHERIS</h1>
-        <p class="auth-subtitle">
-          Entre o céu e o abismo, toda história deixa uma marca.
-        </p>
-        <div class="auth-form">
-          <div class="field">
-            <label>Usuário</label
-            ><input type="text" id="auth-username" autocomplete="username" />
+        <div class="auth-art">
+          <img
+            src="/art/aetheris.png"
+            alt="Aetheris: um céu azul entre nuvens, atravessado por um feixe de luz"
+            width="2000"
+            height="2000"
+            fetchpriority="high"
+          />
+          <div class="auth-art-caption">
+            <span class="eyebrow">Entre o céu e o abismo</span>
+            <p>Um mundo suspenso.<br />Uma história que é sua.</p>
           </div>
-          <div class="field">
-            <label>Senha</label
-            ><input
-              type="password"
-              id="auth-password"
-              autocomplete="current-password"
-            />
+        </div>
+        <div class="auth-entry">
+          <img
+            class="auth-sigil"
+            src="/aetheris-sigil.svg"
+            alt="Símbolo de Aetheris"
+          />
+          <div class="eyebrow">Arquivo Celestial · Sistema de Fichas</div>
+          <h1>AETHERIS</h1>
+          <div class="auth-rule" aria-hidden="true">✦</div>
+          <p class="auth-subtitle">Seu próximo capítulo começa aqui.</p>
+          <div class="auth-form">
+            <div class="field">
+              <label for="auth-username">Usuário</label
+              ><input
+                type="text"
+                id="auth-username"
+                autocomplete="username"
+                placeholder="Nome de viajante"
+              />
+            </div>
+            <div class="field">
+              <label for="auth-password">Senha</label
+              ><input
+                type="password"
+                id="auth-password"
+                autocomplete="current-password"
+                placeholder="Sua senha"
+              />
+            </div>
+            <div class="auth-actions">
+              <button class="btn btn-primary" id="login-btn">
+                Abrir o arquivo</button
+              ><button class="btn btn-gold" id="register-btn">
+                Criar conta
+              </button>
+            </div>
+            <div
+              id="auth-status"
+              class="status-msg"
+              role="status"
+              aria-live="polite"
+            ></div>
           </div>
-          <div class="auth-actions">
-            <button class="btn btn-primary" id="login-btn">
-              Abrir o arquivo</button
-            ><button class="btn btn-gold" id="register-btn">Criar conta</button>
-          </div>
-          <div id="auth-status" class="status-msg"></div>
+          <p class="auth-footer">Ilhas flutuantes · Deuses · Almas</p>
         </div>
       </div>
     </div>
