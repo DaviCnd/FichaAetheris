@@ -53,7 +53,7 @@ function initRulesReader() {
       ? "Ver página original"
       : "Ler em texto";
     if (!textMode) {
-      $("rules-page-image").src = `/rules/pages/${page}.webp`;
+      $("rules-page-image").src = `/rules/pages/${page}.webp?v=original`;
       $("rules-page-image").alt = `Grimório de Aetheris, página ${page}`;
       $("rules-pdf").scrollTop = 0;
       $("rules-pdf").scrollLeft = 0;
@@ -62,7 +62,7 @@ function initRulesReader() {
     $("rules-text").textContent =
       index?.pages[page - 1]?.text || "Carregando o texto…";
     $("rules-text").scrollTop = 0;
-    $("rules-download").href = `/rules/grimorio.pdf#page=${page}`;
+    $("rules-download").href = `/rules/grimorio.pdf?v=original#page=${page}`;
     qsa("[data-rule-page]").forEach((b) => {
       if (Number(b.dataset.rulePage) === page)
         b.setAttribute("aria-current", "page");
