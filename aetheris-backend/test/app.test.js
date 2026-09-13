@@ -177,7 +177,7 @@ test("book opens, chapter navigation and accent-insensitive search work", async 
     await new Promise((r) => setTimeout(r, 20));
     assert(w.document.getElementById("rules-dialog").open);
     const chapter = [...w.document.querySelectorAll("[data-rule-page]")].find(
-      (b) => b.textContent.startsWith("4. Combate"),
+      (b) => b.getAttribute("aria-label") === "Combate, página 10",
     );
     chapter.click();
     assert.equal(w.document.getElementById("rules-page").value, "10");
