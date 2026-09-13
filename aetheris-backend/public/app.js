@@ -454,7 +454,7 @@ function buildAttrGrid() {
   $("attr-grid").innerHTML = D.attributes
     .map(
       (a) =>
-        `<div class="attr-card"><div class="name">${esc(D.attributeLabels[a])}</div><div class="row"><button class="stepper no-print" data-attr="${a}" data-dir="-1">−</button><span class="value" id="attr-${a}">1</span><button class="stepper no-print" data-attr="${a}" data-dir="1">+</button></div></div>`,
+        `<div class="attr-card"><div class="name">${esc(D.attributeLabels[a])}</div><div class="row"><button class="stepper no-print" data-attr="${a}" data-dir="-1" aria-label="Diminuir ${esc(D.attributeLabels[a])}">−</button><span class="value" id="attr-${a}">1</span><button class="stepper no-print" data-attr="${a}" data-dir="1" aria-label="Aumentar ${esc(D.attributeLabels[a])}">+</button></div></div>`,
     )
     .join("");
 }
@@ -464,7 +464,7 @@ function buildSkillsTable() {
     html += `<tr class="group-row"><td colspan="8">${esc(group.group)}</td></tr>`;
     group.items.forEach((name) => {
       const id = cssId(name);
-      html += `<tr><td>${esc(name)}</td><td class="center" id="sk-attr-${id}">0</td><td class="center" id="sk-race-${id}">+0</td><td class="center" id="sk-prof-${id}">+0</td><td class="center" id="sk-other-${id}">+0</td><td><div class="train-controls"><button class="stepper no-print" data-skill="${esc(name)}" data-dir="-1">−</button><span id="sk-train-${id}">0</span><button class="stepper no-print" data-skill="${esc(name)}" data-dir="1">+</button></div></td><td class="center"><span class="total-pill" id="sk-total-${id}">0</span></td><td class="center" id="sk-passive-${id}">10</td></tr>`;
+      html += `<tr><td>${esc(name)}</td><td class="center" id="sk-attr-${id}">0</td><td class="center" id="sk-race-${id}">+0</td><td class="center" id="sk-prof-${id}">+0</td><td class="center" id="sk-other-${id}">+0</td><td><div class="train-controls"><button class="stepper no-print" data-skill="${esc(name)}" data-dir="-1" aria-label="Diminuir treino em ${esc(name)}">−</button><span id="sk-train-${id}">0</span><button class="stepper no-print" data-skill="${esc(name)}" data-dir="1" aria-label="Aumentar treino em ${esc(name)}">+</button></div></td><td class="center"><span class="total-pill" id="sk-total-${id}">0</span></td><td class="center" id="sk-passive-${id}">10</td></tr>`;
     });
   });
   $("skills-body").innerHTML = html;
@@ -497,13 +497,13 @@ function buildDeathTracks() {
   $("death-success").innerHTML = [1, 2, 3]
     .map(
       (i) =>
-        `<button class="death-dot success no-print" data-death="success" data-value="${i}"></button>`,
+        `<button class="death-dot success no-print" data-death="success" data-value="${i}" aria-label="Marcar ${i} sucesso(s) de Caminho"></button>`,
     )
     .join("");
   $("death-fail").innerHTML = [1, 2, 3]
     .map(
       (i) =>
-        `<button class="death-dot fail no-print" data-death="fail" data-value="${i}"></button>`,
+        `<button class="death-dot fail no-print" data-death="fail" data-value="${i}" aria-label="Marcar ${i} falha(s) de Caminho"></button>`,
     )
     .join("");
 }
@@ -518,6 +518,20 @@ function resizeAllAutoGrow() {
 }
 
 function bindEvents() {
+  const fileMenu = document.querySelector(".file-menu");
+  document.addEventListener("click", (event) => {
+    if (
+      !fileMenu.contains(event.target) ||
+      event.target.closest(".file-menu-items button")
+    )
+      fileMenu.open = false;
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && fileMenu.open) {
+      fileMenu.open = false;
+      fileMenu.querySelector("summary").focus();
+    }
+  });
   $("login-btn").addEventListener("click", doLogin);
   $("register-btn").addEventListener("click", doRegister);
   $("logout-btn").addEventListener("click", doLogout);
@@ -738,17 +752,34 @@ function bindEvents() {
   });
 }
 function switchTab(name) {
-  qsa("[data-tab]").forEach((b) =>
-    b.classList.toggle("active", b.dataset.tab === name),
-  );
-  qsa(".tab-page").forEach((p) =>
-    p.classList.toggle("active", p.id === `tab-${name}`),
-  );
+  const target = $(`tab-${name}`);
+  if (!target) return;
+  qsa("[data-tab]").forEach((b) => {
+    const active = b.dataset.tab === name;
+    b.classList.toggle("active", active);
+    if (active) b.setAttribute("aria-current", "page");
+    else b.removeAttribute("aria-current");
+  });
+  qsa(".tab-page").forEach((p) => p.classList.toggle("active", p === target));
+  // Hidden textareas have no layout height. Recalculate after revealing their page.
+  resizeAllAutoGrow();
+  const heading = target.querySelector(".page-heading h2");
+  heading?.focus({ preventScroll: true });
+  const navHeight =
+    window.innerWidth <= 1100
+      ? document.querySelector(".book-tabs").getBoundingClientRect().height + 16
+      : 24;
   window.scrollTo({
-    top: Math.max(0, $("app-content").offsetTop),
-    behavior: "smooth",
+    top: Math.max(
+      0,
+      target.getBoundingClientRect().top + window.scrollY - navHeight,
+    ),
+    behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth",
   });
 }
+
 function openLibrary() {
   refreshSheetDropdown(currentSheetId, true);
   $("character-library").classList.remove("hidden");
@@ -1102,6 +1133,10 @@ function renderStats() {
   $("soul-max").textContent = so;
   $("soul-current").textContent = cs;
   $("soul-bar").style.width = `${so ? (cs / so) * 100 : 0}%`;
+  $("quick-pv").textContent = `${cp} / ${pv}`;
+  $("quick-pe").textContent = `${ce} / ${pe}`;
+  $("quick-soul").textContent = `${cs} / ${so}`;
+  $("quick-defense").textContent = defense();
 }
 function adjustCurrent(kind, dir) {
   const before = currentPV();

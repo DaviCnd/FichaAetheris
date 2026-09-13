@@ -365,3 +365,72 @@ test("Vínculo Divino and initial base-zero blessings retain book costs", async 
     close();
   }
 });
+
+test("workspace pages preserve sheet data and show the same live resources", async () => {
+  const { w, close } = await setup();
+  try {
+    const doc = w.document;
+    doc.getElementById("f-nome").value = "Sarya";
+    doc.getElementById("f-notas").value = "Porto suspenso";
+    doc.querySelector('[data-attr="forca"][data-dir="1"]').click();
+    const before = JSON.stringify(w.buildSheetData().state);
+    for (const section of [
+      "growth",
+      "combat",
+      "powers",
+      "inventory",
+      "notes",
+      "sheet",
+    ]) {
+      const button = doc.querySelector(`[data-tab="${section}"]`);
+      button.click();
+      assert.equal(doc.querySelectorAll(".tab-page.active").length, 1);
+      assert.equal(doc.querySelector(".tab-page.active").id, `tab-${section}`);
+      assert.equal(button.getAttribute("aria-current"), "page");
+      assert.equal(JSON.stringify(w.buildSheetData().state), before);
+      assert.equal(doc.getElementById("f-notas").value, "Porto suspenso");
+    }
+    doc.querySelector('[data-adjust="pv"][data-dir="-1"]').click();
+    assert.equal(doc.getElementById("pv-current").textContent, "22");
+    assert.equal(
+      doc.getElementById("quick-pv").textContent,
+      `${doc.getElementById("pv-current").textContent} / ${doc.getElementById("pv-max").textContent}`,
+    );
+    const ids = [...doc.querySelectorAll("[id]")].map((el) => el.id);
+    assert.equal(new Set(ids).size, ids.length);
+  } finally {
+    close();
+  }
+});
+
+test("contextual rule links open the right page; printing expands and restores details", async () => {
+  const { w, close } = await setup();
+  try {
+    const doc = w.document;
+    for (const [section, page] of [
+      ["sheet", 6],
+      ["growth", 8],
+      ["combat", 10],
+      ["powers", 15],
+      ["inventory", 39],
+      ["notes", 48],
+    ]) {
+      doc.querySelector(`#tab-${section} [data-open-book]`).click();
+      await new Promise((r) => setTimeout(r, 10));
+      assert.equal(doc.getElementById("rules-dialog").open, true);
+      assert.equal(doc.getElementById("rules-page").value, String(page));
+      doc.getElementById("rules-close").click();
+    }
+    const details = [...doc.querySelectorAll("#app-content details")];
+    const previous = details.map((el) => el.open);
+    w.dispatchEvent(new w.Event("beforeprint"));
+    assert.ok(details.every((el) => el.open));
+    w.dispatchEvent(new w.Event("afterprint"));
+    assert.deepEqual(
+      details.map((el) => el.open),
+      previous,
+    );
+  } finally {
+    close();
+  }
+});

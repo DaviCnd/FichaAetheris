@@ -83,7 +83,8 @@ function initRulesReader() {
       nav.appendChild(button("Resultado", p.page, snippet));
     }
   }
-  $("rules-open").addEventListener("click", async () => {
+  async function openBook(requestedPage) {
+    if (requestedPage) page = clamp(Math.trunc(Number(requestedPage)), 1, 50);
     previousFocus = document.activeElement;
     dialog.showModal();
     document.body.classList.add("book-open");
@@ -101,6 +102,10 @@ function initRulesReader() {
     }
     toc();
     renderPage();
+  }
+  $("rules-open").addEventListener("click", () => openBook());
+  qsa("[data-open-book]").forEach((button) => {
+    button.addEventListener("click", () => openBook(button.dataset.openBook));
   });
   $("rules-close").addEventListener("click", () => dialog.close());
   dialog.addEventListener("close", () => {

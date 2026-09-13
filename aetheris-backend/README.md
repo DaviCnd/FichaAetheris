@@ -46,3 +46,11 @@ Configure as variáveis no ambiente do processo ou no painel da hospedagem. `.en
 As sessões antigas exigem novo login após a atualização. Contas e fichas são preservadas; o banco recebe tabelas de sessões e uma coluna de versão de ficha automaticamente.
 
 Veja os limites de automação e decisões não especificadas no livro em [REVISAO-GRIMORIO-v2.3.md](REVISAO-GRIMORIO-v2.3.md).
+
+### Interface por áreas
+
+A ficha se organiza em Personagem, Evolução, Combate, Poderes, Inventário e Diário. Todos os campos anteriores continuam com os mesmos identificadores e formato de salvamento. O menu Opções reúne importação, exportação, impressão e descarte de alterações locais. O resumo de PV/PE/Alma/Defesa usa as mesmas funções do painel de combate.
+
+Cada área possui um atalho para a página correspondente do Grimório. A impressão expande os detalhes e inclui as seis áreas; depois, restaura as escolhas de expansão do usuário. O tema `workspace.css` é exclusivo para tela e substitui `celestial.css`; `print.css` organiza a versão A4 com fundo branco.
+
+A reorganização não modifica fórmulas, custos, catálogos ou a interpretação das regras. As lacunas do livro e convenções permanecem documentadas em `REVISAO-GRIMORIO-v2.3.md`; a interface não certifica decisões narrativas como automaticamente validadas.
