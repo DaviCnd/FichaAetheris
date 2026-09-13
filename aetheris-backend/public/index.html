@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/workspace.css" media="screen" />
     <link rel="stylesheet" href="/print.css" media="print" />
+    <link rel="stylesheet" href="/appearance.css" media="screen" />
   </head>
   <body>
     <div id="auth-overlay" class="auth-overlay">
@@ -86,6 +87,24 @@
               aria-live="polite"
             ></div>
           </div>
+          <div class="auth-appearance">
+            <button
+              type="button"
+              class="btn btn-small no-print"
+              data-theme-toggle
+              aria-pressed="false"
+            >
+              ☾ Modo escuro</button
+            ><button
+              type="button"
+              class="btn btn-small no-print"
+              data-appearance-open
+              aria-haspopup="dialog"
+              aria-controls="appearance-dialog"
+            >
+              ◉ Aparência
+            </button>
+          </div>
           <p class="auth-footer">Ilhas flutuantes · Deuses · Almas</p>
         </div>
       </div>
@@ -99,6 +118,22 @@
           <p>Um lugar para cada escolha da sua jornada.</p>
         </div>
         <div class="session-line">
+          <button
+            type="button"
+            class="btn btn-small no-print"
+            data-theme-toggle
+            aria-pressed="false"
+          >
+            ☾ Modo escuro</button
+          ><button
+            type="button"
+            class="btn btn-small no-print"
+            data-appearance-open
+            aria-haspopup="dialog"
+            aria-controls="appearance-dialog"
+          >
+            ◉ Aparência
+          </button>
           <span>Conectado como <strong id="whoami"></strong></span
           ><button class="btn btn-small no-print hidden" id="master-toggle-btn">
             Painel do Mestre</button
@@ -1444,6 +1479,60 @@
         </section>
       </div>
     </dialog>
+    <dialog
+      id="appearance-dialog"
+      class="appearance-dialog"
+      aria-labelledby="appearance-title"
+    >
+      <header class="appearance-header">
+        <div>
+          <span class="eyebrow">DO SEU JEITO</span>
+          <h2 id="appearance-title">Aparência</h2>
+        </div>
+        <button
+          type="button"
+          class="btn btn-small"
+          id="appearance-close"
+          aria-label="Fechar aparência"
+        >
+          Fechar ×
+        </button>
+      </header>
+      <p class="appearance-description">Escolha as cores da sua jornada.</p>
+      <label class="appearance-mode"
+        ><span
+          ><strong>Modo escuro</strong
+          ><small>Uma versão mais suave para jogar à noite.</small></span
+        ><input type="checkbox" id="appearance-dark" role="switch"
+      /></label>
+      <fieldset class="appearance-colors">
+        <legend>Cor de destaque</legend>
+        <div id="appearance-presets"></div>
+      </fieldset>
+      <label class="appearance-custom" for="appearance-color"
+        ><span
+          >Escolher outra cor<small
+            >Botões e destaques se ajustam para manter a leitura.</small
+          ></span
+        ><input type="color" id="appearance-color" value="#2e4d75"
+      /></label>
+      <div class="appearance-preview">
+        <span class="appearance-preview-dot"></span>
+        <div>
+          <strong>Sua próxima aventura</strong
+          ><small>Prévia das cores do seu arquivo</small>
+        </div>
+        <span class="appearance-preview-button">Aetheris</span>
+      </div>
+      <p id="appearance-status" class="appearance-status" role="status">
+        Salvo neste navegador, separado por conta.
+      </p>
+      <button type="button" class="btn" id="appearance-reset">
+        Restaurar aparência padrão
+      </button>
+    </dialog>
+
+    <script src="/appearance.js"></script>
     <script src="/aetheris-data.js"></script>
     <script src="/sheet-schema.js"></script>
     <script src="/rules-engine.js"></script>

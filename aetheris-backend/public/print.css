@@ -217,3 +217,10 @@ footer {
   padding: 12px 0;
   font-size: 8px;
 }
+:root {
+  color-scheme: light;
+}
+.appearance-dialog,
+.auth-appearance {
+  display: none !important;
+}

@@ -202,6 +202,7 @@ async function checkSession() {
 }
 async function showApp(username, isAdmin) {
   accountName = username;
+  window.AetherisAppearance.setAccount(username);
   resetEditor();
   $("auth-password").value = "";
   $("auth-overlay").classList.add("hidden");
@@ -277,6 +278,7 @@ async function doLogout() {
     $("app-content").classList.add("hidden");
     $("auth-overlay").classList.remove("hidden");
     accountName = "";
+    window.AetherisAppearance.setAccount("");
   });
 }
 async function refreshSheetDropdown(selectId, openAfter = false) {
@@ -470,7 +472,9 @@ function setFormDisabled(disabled) {
       el.id === "master-toggle-btn" ||
       el.id === "export-btn" ||
       el.id === "print-btn" ||
-      el.hasAttribute("data-open-book")
+      el.hasAttribute("data-open-book") ||
+      el.hasAttribute("data-theme-toggle") ||
+      el.hasAttribute("data-appearance-open")
     )
       return;
     el.disabled = disabled;
