@@ -1566,3 +1566,231 @@ footer > span {
     justify-content: flex-end;
   }
 }
+
+/* Portrait book reader: fit the full page first, magnify only on request. */
+.rules-dialog {
+  width: min(1120px, 96vw);
+  height: 94dvh;
+  max-height: 94dvh;
+}
+.rules-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.rules-header {
+  flex: 0 0 auto;
+  padding: 16px 22px;
+}
+.rules-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 252px minmax(0, 1fr);
+  flex: 1;
+  height: auto;
+  min-height: 0;
+}
+.rules-sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+  border-right: 1px solid #e5ebf3;
+}
+.rules-sidebar-top {
+  flex-shrink: 0;
+  padding: 20px 18px 8px;
+}
+.rules-sidebar-top h3 {
+  margin: 0 0 14px;
+  color: #304a6a;
+  font: 650 14px var(--sans);
+}
+.rules-sidebar-top > label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.rules-sidebar input {
+  background: #f5f7fb;
+  border: 1px solid #e0e7f1;
+  font-size: 12px;
+  min-height: 40px;
+}
+#rules-search-status {
+  color: #8291a7;
+  font-size: 10px;
+  margin: 15px 0 4px;
+}
+#rules-toc {
+  display: block;
+  min-height: 0;
+  overflow: auto;
+  padding: 0 10px 18px;
+  scrollbar-width: thin;
+  scrollbar-color: #cfdae9 transparent;
+}
+.rules-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  margin: 2px 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #647993;
+  text-align: left;
+  font: 500 11px/1.5 var(--sans);
+}
+.rules-link-page {
+  color: #96a4b7;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.rules-link:hover {
+  background: #f1f5fb;
+}
+.rules-link[aria-current] {
+  color: #315880;
+  background: #e9f0fa;
+}
+.rules-link[aria-current] .rules-link-page {
+  color: #315880;
+}
+.rules-link small {
+  grid-column: 1 / -1;
+  font: 10px/1.6 var(--sans);
+  color: #7b8ca3;
+  margin: 0;
+}
+#rules-toc details {
+  margin-top: 12px;
+  border-top: 1px solid #e6ecf5;
+  padding-top: 12px;
+}
+#rules-toc summary {
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 11px;
+  color: #607a9c;
+}
+.rules-reading {
+  padding: 0;
+  min-height: 0;
+  background: #edf1f7;
+}
+.rules-controls {
+  flex: 0 0 auto;
+  gap: 7px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e7f1;
+  background: #f8fafd;
+  font-size: 10px;
+}
+.rules-controls .btn {
+  min-height: 34px;
+  padding: 8px 10px;
+  font-size: 10px;
+}
+.rules-controls input {
+  width: 48px;
+  padding: 8px 5px;
+  text-align: center;
+  font-size: 11px;
+}
+.rules-controls select {
+  max-width: 150px;
+  font-size: 11px;
+}
+.rules-page-image {
+  min-height: 0;
+  padding: 16px;
+  background: #edf1f7;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+.rules-page-image img {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  margin: 0 auto;
+  object-fit: contain;
+  box-shadow: 0 4px 20px #293d5b20;
+}
+.rules-reading article {
+  margin: 16px;
+  border-radius: 6px;
+  min-height: 0;
+}
+#rules-index-toggle,
+.rules-index-backdrop {
+  display: none;
+}
+@media (max-width: 700px) {
+  .rules-dialog {
+    width: 98vw;
+    max-width: 98vw;
+    height: 96dvh;
+    max-height: 96dvh;
+    border-radius: 14px;
+  }
+  .rules-header {
+    padding: 12px 14px;
+  }
+  .rules-header h2 {
+    font-size: 20px;
+  }
+  .rules-layout {
+    display: flex;
+    min-height: 0;
+  }
+  .rules-reading {
+    width: 100%;
+  }
+  .rules-sidebar {
+    display: none;
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: min(290px, 88%);
+    z-index: 3;
+    border: 0;
+    box-shadow: 10px 0 32px #1c304427;
+  }
+  .index-open .rules-sidebar {
+    display: flex;
+  }
+  .index-open .rules-index-backdrop {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border: 0;
+    background: #12294565;
+  }
+  #rules-index-toggle {
+    display: inline-flex;
+  }
+  .rules-controls {
+    padding: 9px;
+    gap: 6px;
+  }
+  .rules-controls label[for="rules-zoom"] {
+    display: none;
+  }
+  .rules-controls select {
+    max-width: 132px;
+  }
+  .rules-page-image {
+    padding: 16px;
+  }
+  #rules-toc {
+    display: block;
+  }
+}
