@@ -46,4 +46,4 @@ Não é possível certificar “100%” nas regras que o próprio texto deixa in
 
 ## Livro dentro do site
 
-O PDF foi otimizado para consulta, sem alterar o conteúdo das 50 páginas. As imagens são renderizações dessas páginas. A busca usa o texto extraído, que pode omitir títulos desenhados na imagem; o sumário dos capítulos e os atalhos de divindades foram conferidos separadamente. A leitura em texto é auxiliar: confira disposição de tabelas no modo de página original.
+O PDF disponível é o arquivo original de 50 páginas fornecido pelo autor, sem redução ou recompressão. As imagens de consulta são renderizadas diretamente desse original a 144 dpi (resolução das imagens embutidas na fonte) e armazenadas em WebP sem perdas. Isso remove a compressão adicional da versão anterior; detalhes ausentes no original não são reconstruídos. A busca usa o texto extraído, que pode omitir títulos desenhados na imagem; o sumário dos capítulos e os atalhos de divindades foram conferidos separadamente. A leitura em texto é auxiliar: confira disposição de tabelas no modo de página original.
