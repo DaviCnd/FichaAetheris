@@ -54,3 +54,7 @@ A ficha se organiza em Personagem, Evolução, Combate, Poderes, Inventário e D
 Cada área possui um atalho para a página correspondente do Grimório. A impressão expande os detalhes e inclui as seis áreas; depois, restaura as escolhas de expansão do usuário. O tema `workspace.css` é exclusivo para tela e substitui `celestial.css`; `print.css` organiza a versão A4 com fundo branco.
 
 A reorganização não modifica fórmulas, custos, catálogos ou a interpretação das regras. As lacunas do livro e convenções permanecem documentadas em `REVISAO-GRIMORIO-v2.3.md`; a interface não certifica decisões narrativas como automaticamente validadas.
+
+## Aparência por jogador
+
+Os botões **Modo escuro** e **Aparência** ficam na entrada e no cabeçalho da ficha. Cada jogador pode escolher entre seis cores ou usar uma cor personalizada, alternar o tema e restaurar o padrão. As preferências são salvas neste navegador, separadas por conta; não são sincronizadas entre dispositivos. As regras e as páginas originais do Grimório permanecem iguais.

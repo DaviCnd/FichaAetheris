@@ -1,11 +1,11 @@
 {
   "name": "aetheris-fichas",
   "version": "2.3.0",
-  "description": "Arquivo de personagens do RPG Aetheris, com visual do Grim\u00f3rio e cria\u00e7\u00e3o fiel \u00e0 Edi\u00e7\u00e3o Expandida.",
+  "description": "Arquivo de personagens do RPG Aetheris, com visual do Grimório e criação fiel à Edição Expandida.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check public/app.js && node --check public/persistence.js && node --check public/rules-engine.js && node --check public/rules-reader.js && node --check public/sheet-schema.js && node --check public/bootstrap.js && node --check public/aetheris-data.js",
+    "check": "node --check public/appearance.js && node --check server.js && node --check public/app.js && node --check public/persistence.js && node --check public/rules-engine.js && node --check public/rules-reader.js && node --check public/sheet-schema.js && node --check public/bootstrap.js && node --check public/aetheris-data.js",
     "test": "node --test test/*.test.js"
   },
   "engines": {

@@ -45,6 +45,7 @@ async function setup(handler) {
     return { ok: status < 400, status, json: async () => data };
   };
   for (const file of [
+    "appearance.js",
     "aetheris-data.js",
     "sheet-schema.js",
     "rules-engine.js",
@@ -429,6 +430,49 @@ test("contextual rule links open the right page; printing expands and restores d
     assert.deepEqual(
       details.map((el) => el.open),
       previous,
+    );
+  } finally {
+    close();
+  }
+});
+
+test("appearance is saved per account and does not modify the character", async () => {
+  const { w, close } = await setup();
+  try {
+    const before = JSON.stringify(w.buildSheetData().state);
+    const change = (color) => {
+      const input = w.document.getElementById("appearance-color");
+      input.value = color;
+      input.dispatchEvent(new w.Event("input"));
+    };
+    w.AetherisAppearance.setAccount("Ana");
+    w.document.querySelector("[data-theme-toggle]").click();
+    change("#8056bb");
+    assert.equal(w.document.documentElement.dataset.theme, "dark");
+    w.AetherisAppearance.setAccount("Bruno");
+    assert.equal(w.document.documentElement.dataset.theme, "light");
+    assert.equal(
+      w.document.getElementById("appearance-color").value,
+      "#2e4d75",
+    );
+    change("#21876e");
+    w.AetherisAppearance.setAccount("Ana");
+    assert.equal(w.document.documentElement.dataset.theme, "dark");
+    assert.equal(
+      w.document.getElementById("appearance-color").value,
+      "#8056bb",
+    );
+    w.AetherisAppearance.setAccount("");
+    assert.equal(w.document.documentElement.dataset.theme, "light");
+    assert.equal(JSON.stringify(w.buildSheetData().state), before);
+    w.localStorage.setItem(
+      "aetheris:appearance:v1:account:Invalid",
+      '{"dark":false,"color":"url(evil)"}',
+    );
+    w.AetherisAppearance.setAccount("Invalid");
+    assert.equal(
+      w.document.getElementById("appearance-color").value,
+      "#2e4d75",
     );
   } finally {
     close();

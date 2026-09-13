@@ -1,24 +1,55 @@
 /* Modern Aetheris workspace. Screen-only; the full character sheet remains printable. */
 :root {
-  --ink: #26364c;
-  --muted: #69798f;
-  --paper: #f2f5fa;
+  --ink: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7663), 85%)
+      22.353%
+  );
+  --muted: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3522), 85%)
+      48.627%
+  );
+  --paper: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0217), 85%)
+      96.471%
+  );
   --paper-hi: #ffffff;
-  --paper-deep: #e5edf8;
+  --paper-deep: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.3236), 85%)
+      93.529%
+  );
   --gold: #a78037;
   --gold-hi: #f0d6a1;
-  --line: #dce4ef;
+  --line: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8564), 85%)
+      90%
+  );
   --wine: #985367;
-  --teal: #497d94;
-  --night: #172640;
-  --night2: #213752;
+  --teal: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7802), 85%)
+      43.333%
+  );
+  --night: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0834), 85%)
+      17.059%
+  );
+  --night2: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9795), 85%)
+      22.549%
+  );
   --body: system-ui, -apple-system, "Segoe UI", sans-serif;
   --sans: var(--body);
-  --shadow: 0 16px 48px #16294916;
+  --shadow: 0 16px 48px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2341), 85%)
+        18.627% / 0.0863
+    );
   --display: Georgia, "Times New Roman", serif;
 }
 body {
-  background: #eef2f8;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9579), 85%)
+      95.294%
+  );
   background-image: none;
   font-size: 14px;
   line-height: 1.5;
@@ -69,7 +100,10 @@ summary {
 }
 .header h1 {
   font: 500 clamp(22px, 2.3vw, 32px) / 1.2 var(--display);
-  color: #233c5e;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0514), 85%)
+      25.294%
+  );
   letter-spacing: -0.02em;
   text-shadow: none;
   margin: 6px 0;
@@ -94,7 +128,10 @@ summary {
   color: var(--muted);
 }
 .session-line strong {
-  color: #294564;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9619), 85%)
+      27.647%
+  );
 }
 .book-tabs {
   position: fixed;
@@ -105,11 +142,18 @@ summary {
   display: flex;
   flex-direction: column;
   padding: 26px 16px 18px;
-  background: #1b2e4b;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0818), 85%)
+      20%
+  );
   border: 1px solid #ffffff12;
   border-radius: 22px;
   z-index: 100;
-  box-shadow: 0 12px 30px #21375318;
+  box-shadow: 0 12px 30px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9909), 85%)
+        22.745% / 0.0941
+    );
   overflow-y: auto;
 }
 .sidebar-brand {
@@ -130,7 +174,10 @@ summary {
 }
 .sidebar-brand span {
   display: block;
-  color: #a7b9d3;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7663), 85%)
+      74.118%
+  );
   font-size: 10px;
   margin-top: 3px;
 }
@@ -138,7 +185,10 @@ summary {
   padding: 0 14px 10px;
   font-size: 9px;
   letter-spacing: 0.16em;
-  color: #9cacc2;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.546), 85%)
+      68.627%
+  );
   font-weight: 700;
 }
 .nav-items {
@@ -157,7 +207,10 @@ summary {
   border-radius: 11px;
   text-transform: none;
   letter-spacing: 0;
-  color: #b8c8de;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.84), 85%)
+      79.608%
+  );
   font: 500 13px/1.4 var(--sans);
   text-align: left;
   transition:
@@ -183,15 +236,29 @@ summary {
 .book-tab.active {
   background: #e9d5aa;
   border-color: #e9d5aa;
-  color: #293b53;
-  box-shadow: 0 5px 12px #0e19392b;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7786), 85%)
+      24.314%
+  );
+  box-shadow: 0 5px 12px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.3923), 85%)
+        13.922% / 0.1686
+    );
 }
 .sidebar-world {
   position: relative;
   margin-top: auto;
   padding: 110px 14px 16px;
   background:
-    linear-gradient(transparent, #1b2e4b 75%),
+    linear-gradient(
+      transparent,
+      hsl(
+          var(--accent-h, 215)
+            clamp(0%, calc(var(--accent-s, 43.5%) * 1.0818), 85%) 20%
+        )
+        75%
+    ),
     url("/art/aetheris.png") center top/100% auto no-repeat;
   border-radius: 10px;
   overflow: hidden;
@@ -213,7 +280,10 @@ summary {
   padding: 0;
   border: 0;
   background: none;
-  color: #bdcce0;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8295), 85%)
+      80.98%
+  );
   font: 11px var(--sans);
   cursor: pointer;
 }
@@ -224,7 +294,10 @@ summary {
 .sidebar-edition {
   padding: 18px 14px 0;
   border-top: 1px solid #ffffff14;
-  color: #91a5c1;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.6415), 85%)
+      66.275%
+  );
   font-size: 9px;
 }
 .character-toolbar {
@@ -234,7 +307,11 @@ summary {
   grid-template-columns: minmax(180px, 1fr) auto;
   gap: 10px 20px;
   padding: 20px 24px 14px;
-  border: 1px solid #dce4ef;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8564), 85%)
+        90%
+    );
   border-bottom: 0;
   border-radius: 16px 16px 0 0;
   background: white;
@@ -254,7 +331,10 @@ summary {
   overflow-wrap: anywhere;
 }
 .character-summary .eyebrow {
-  color: #718298;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3659), 85%)
+      51.961%
+  );
   font-size: 9px;
 }
 .character-summary > div > span:last-child {
@@ -265,9 +345,19 @@ summary {
   width: 48px;
   height: 48px;
   flex-shrink: 0;
-  background: #edf2f9;
-  color: #5677a2;
-  border: 1px solid #d6e0ee;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.1494), 85%)
+      95.294%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7045), 85%)
+      48.627%
+  );
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9512), 85%)
+        88.627%
+    );
   border-radius: 14px;
 }
 .toolbar-actions {
@@ -293,8 +383,15 @@ summary {
   flex-wrap: wrap;
   gap: 12px 32px;
   padding: 14px 24px;
-  background: #f8faff;
-  border: 1px solid #dce4ef;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 2.2989), 85%)
+      98.627%
+  );
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8564), 85%)
+        90%
+    );
   border-radius: 0 0 16px 16px;
   margin-bottom: 32px;
 }
@@ -303,10 +400,16 @@ summary {
   align-items: center;
   gap: 7px;
   font-size: 11px;
-  color: #758299;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3448), 85%)
+      52.941%
+  );
 }
 .session-metrics strong {
-  color: #334969;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7958), 85%)
+      30.588%
+  );
   font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
@@ -320,7 +423,10 @@ summary {
   background: #bc7183;
 }
 .metric-dot.energy {
-  background: #608eb7;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8658), 85%)
+      54.706%
+  );
 }
 .page-heading {
   display: flex;
@@ -330,31 +436,51 @@ summary {
   margin: 0 0 22px;
 }
 .page-heading .eyebrow {
-  color: #667c99;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4598), 85%)
+      50%
+  );
 }
 .heading-number {
-  color: #9eacbe;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4541), 85%)
+      68.235%
+  );
   padding-left: 5px;
 }
 .page-heading h2 {
-  color: #243d5e;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0256), 85%)
+      25.49%
+  );
   font: 500 clamp(24px, 2.4vw, 32px) / 1.2 var(--display);
   letter-spacing: -0.025em;
   margin: 5px 0 8px;
   text-transform: none;
 }
 .page-heading p {
-  color: #728299;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.369), 85%)
+      52.353%
+  );
   font-size: 12px;
   margin: 0;
 }
 .panel {
   margin: 0 0 20px;
   padding: 26px;
-  border: 1px solid #dde5ef;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8276), 85%)
+        90.196%
+    );
   border-radius: 16px;
   background: #fff;
-  box-shadow: 0 3px 12px #213c5e03;
+  box-shadow: 0 3px 12px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.1042), 85%)
+        24.902% / 0.0118
+    );
 }
 .panel::before,
 .panel::after {
@@ -364,7 +490,10 @@ h2 {
   font: 650 16px/1.4 var(--sans);
   letter-spacing: -0.02em;
   text-transform: none;
-  color: #2a415e;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.879), 85%)
+      26.667%
+  );
   margin-bottom: 20px;
 }
 h2 .bar {
@@ -377,13 +506,19 @@ h3 {
   font: 650 13px/1.5 var(--sans);
   letter-spacing: 0;
   text-transform: none;
-  color: #39516e;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7296), 85%)
+      32.745%
+  );
   margin-top: 25px;
 }
 .section-note,
 .field-help {
   font: 12px/1.6 var(--sans);
-  color: #728197;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3472), 85%)
+      51.961%
+  );
 }
 .grid {
   gap: 18px;
@@ -392,7 +527,10 @@ h3 {
   gap: 7px;
 }
 .field label {
-  color: #52637b;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4598), 85%)
+      40.196%
+  );
   font: 600 11px/1.5 var(--sans);
   letter-spacing: 0;
   text-transform: none;
@@ -403,40 +541,69 @@ h3 {
 .control {
   min-height: 44px;
   padding: 11px 13px;
-  border: 1px solid #d5dfeb;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8157), 85%)
+        87.843%
+    );
   border-radius: 9px;
-  background: #f9fbfe;
-  color: #2c405c;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.642), 85%)
+      98.627%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8114), 85%)
+      26.667%
+  );
   font: 13px/1.5 var(--sans);
   box-shadow: none;
 }
 .field input::placeholder,
 .field textarea::placeholder {
-  color: #8a98aa;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3642), 85%)
+      60.392%
+  );
 }
 .field input:hover,
 .field select:hover,
 .field textarea:hover {
-  border-color: #b4c5dc;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8359), 85%)
+      78.431%
+  );
 }
 .field input:focus,
 .field select:focus,
 .field textarea:focus,
 .control:focus {
   background: #fff;
-  border-color: #718eb5;
-  box-shadow: 0 0 0 3px #6686b215;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7237), 85%)
+      57.647%
+  );
+  box-shadow: 0 0 0 3px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7596), 85%)
+        54.902% / 0.0824
+    );
 }
 .field textarea.auto-grow {
   min-height: 44px;
 }
 input[type="checkbox"] {
-  accent-color: #597ca6;
+  accent-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.6942), 85%)
+      50%
+  );
   width: 16px;
   height: 16px;
 }
 input[type="range"] {
-  accent-color: #597ca6;
+  accent-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.6942), 85%)
+      50%
+  );
   padding: 0;
 }
 .btn {
@@ -445,23 +612,44 @@ input[type="range"] {
   justify-content: center;
   gap: 7px;
   min-height: 40px;
-  border: 1px solid #d5dfeb;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8157), 85%)
+        87.843%
+    );
   background: white;
-  color: #405777;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.6909), 85%)
+      35.882%
+  );
   padding: 10px 14px;
   border-radius: 9px;
   font: 600 12px/1.3 var(--sans);
   text-decoration: none;
-  box-shadow: 0 2px 2px #24436603;
+  box-shadow: 0 2px 2px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0995), 85%)
+        27.059% / 0.0118
+    );
   transition:
     background 0.15s,
     box-shadow 0.15s,
     transform 0.15s;
 }
 .btn:hover {
-  background: #f1f5fc;
-  border-color: #b9c9df;
-  box-shadow: 0 4px 8px #2942670c;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.4875), 85%)
+      96.667%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8564), 85%)
+      80%
+  );
+  box-shadow: 0 4px 8px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9898), 85%)
+        28.235% / 0.0471
+    );
   transform: translateY(-1px);
 }
 .btn:active {
@@ -470,15 +658,31 @@ input[type="range"] {
 }
 .btn-gold,
 .btn-primary {
-  background: #2e4d75;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0013), 85%)
+      31.961%
+  );
   color: #fff;
-  border-color: #2e4d75;
-  box-shadow: 0 3px 7px #2e4d7520;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0013), 85%)
+      31.961%
+  );
+  box-shadow: 0 3px 7px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0013), 85%)
+        31.961% / 0.1255
+    );
 }
 .btn-gold:hover,
 .btn-primary:hover {
-  background: #3c608d;
-  border-color: #3c608d;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9264), 85%)
+      39.412%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9264), 85%)
+      39.412%
+  );
 }
 .btn-danger {
   background: #fff5f5;
@@ -497,7 +701,10 @@ input[type="range"] {
 .btn-reference {
   border: 0;
   background: transparent;
-  color: #657c9b;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4887), 85%)
+      50.196%
+  );
   box-shadow: none;
   font-size: 11px;
   flex-shrink: 0;
@@ -524,10 +731,18 @@ input[type="range"] {
   width: 240px;
   display: grid;
   padding: 6px;
-  border: 1px solid #dce4ef;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8564), 85%)
+        90%
+    );
   border-radius: 12px;
   background: #fff;
-  box-shadow: 0 15px 45px #253e6126;
+  box-shadow: 0 15px 45px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0293), 85%)
+        26.275% / 0.149
+    );
   z-index: 150;
 }
 .file-menu-items .btn {
@@ -538,7 +753,10 @@ input[type="range"] {
   background: transparent;
 }
 .file-menu-items .btn:hover {
-  background: #edf3fb;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.4629), 85%)
+      95.686%
+  );
   transform: none;
 }
 .file-menu-items .btn-danger {
@@ -551,8 +769,15 @@ input[type="range"] {
 }
 .portrait-frame {
   border-radius: 14px;
-  border: 1px solid #d5dfeb;
-  background: #eef3fa;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8157), 85%)
+        87.843%
+    );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2539), 85%)
+      95.686%
+  );
   box-shadow: none;
 }
 .portrait-frame::before,
@@ -560,8 +785,14 @@ input[type="range"] {
   display: none;
 }
 .portrait-placeholder {
-  color: #6382ac;
-  background: #edf3fc;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7022), 85%)
+      53.137%
+  );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.642), 85%)
+      95.882%
+  );
 }
 .portrait-actions {
   gap: 5px;
@@ -570,11 +801,21 @@ input[type="range"] {
   flex: 1;
 }
 .info-box {
-  background: #f1f5fb;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2771), 85%)
+      96.471%
+  );
   border: 0;
-  border-left: 3px solid #afc2dd;
+  border-left: 3px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9276), 85%)
+        77.647%
+    );
   border-radius: 7px;
-  color: #516681;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5255), 85%)
+      41.176%
+  );
   font: 12px/1.7 var(--sans);
   padding: 12px 14px;
 }
@@ -586,8 +827,14 @@ input[type="range"] {
 .tag {
   border: 0;
   border-radius: 5px;
-  background: #e8eef7;
-  color: #557294;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.1123), 85%)
+      93.922%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.6216), 85%)
+      45.686%
+  );
   font: 600 10px var(--sans);
   padding: 4px 7px;
 }
@@ -600,17 +847,30 @@ input[type="range"] {
 }
 .attr-card {
   padding: 20px 12px;
-  border: 1px solid #dce5f2;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0536), 85%)
+        90.588%
+    );
   border-radius: 12px;
-  background: #f4f7fc;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.3136), 85%)
+      97.255%
+  );
 }
 .attr-card .name {
-  color: #6d7f99;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4079), 85%)
+      51.373%
+  );
   font-size: 10px;
   letter-spacing: 0.08em;
 }
 .attr-card .value {
-  color: #355578;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8903), 85%)
+      33.922%
+  );
   font: 500 38px/1.4 var(--display);
   font-variant-numeric: tabular-nums;
 }
@@ -624,53 +884,92 @@ input[type="range"] {
   height: 34px;
   border-radius: 9px;
   background: #fff;
-  border: 1px solid #ccd9e9;
-  color: #4d6a90;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9132), 85%)
+        85.686%
+    );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.6969), 85%)
+      43.333%
+  );
   font: 18px var(--sans);
   cursor: pointer;
 }
 .stepper:hover:not(:disabled) {
-  background: #e6eef9;
-  border-color: #829fc4;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.409), 85%)
+      93.922%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8246), 85%)
+      63.922%
+  );
 }
 .stat-grid {
   gap: 12px;
 }
 .stat-card {
   padding: 18px;
-  border: 1px solid #dde6f1;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9579), 85%)
+        90.588%
+    );
   border-radius: 12px;
-  background: #f8fafd;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2771), 85%)
+      98.235%
+  );
 }
 .stat-card .label {
   font: 650 10px/1.5 var(--sans);
   letter-spacing: 0.04em;
-  color: #697e9a;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4488), 85%)
+      50.784%
+  );
 }
 .stat-card .value {
   font: 500 29px/1.5 var(--display);
-  color: #365372;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.821), 85%)
+      32.941%
+  );
   font-variant-numeric: tabular-nums;
 }
 .stat-card .sub {
   font: 11px/1.5 var(--sans);
-  color: #7a8a9f;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3714), 85%)
+      55.098%
+  );
 }
 .resource-card {
   background: #fff;
-  border-top: 3px solid #93a9c7;
+  border-top: 3px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7289), 85%)
+        67.843%
+    );
 }
 .resource-card:has(#pv-current) {
   border-top-color: #c08591;
 }
 .resource-card:has(#pe-current) {
-  border-top-color: #709dc0;
+  border-top-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8928), 85%)
+      59.608%
+  );
 }
 .resource-card:has(#soul-current) {
   border-top-color: #bda16a;
 }
 .stat-adjust {
-  color: #7c8ca0;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3662), 85%)
+      55.686%
+  );
 }
 .stat-adjust .stepper {
   width: 38px;
@@ -679,14 +978,20 @@ input[type="range"] {
 .bar-outer {
   height: 7px;
   border-radius: 5px;
-  background: #e9eef5;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8621), 85%)
+      93.725%
+  );
   margin: 12px 0;
 }
 .bar-pv {
   background: #b87486;
 }
 .bar-pe {
-  background: #6697bf;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9428), 85%)
+      57.451%
+  );
 }
 .bar-soul {
   background: #b79d65;
@@ -695,52 +1000,90 @@ input[type="range"] {
   background: #8a6c9a;
 }
 .table-scroll {
-  border: 1px solid #e0e7f1;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8685), 85%)
+        91.176%
+    );
   border-radius: 10px;
 }
 .data-table {
   font: 12px/1.5 var(--sans);
 }
 .data-table th {
-  background: #edf3fb;
-  color: #5b7290;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.4629), 85%)
+      95.686%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5185), 85%)
+      46.078%
+  );
   font: 650 10px/1.5 var(--sans);
   letter-spacing: 0.03em;
   padding: 12px;
-  border-color: #dce5f1;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9852), 85%)
+      90.392%
+  );
 }
 .data-table td {
   padding: 10px 12px;
-  border-color: #e8edf5;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9056), 85%)
+      93.529%
+  );
 }
 .data-table tr:nth-child(even) td {
-  background: #f9fbfe;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.642), 85%)
+      98.627%
+  );
 }
 .check-card,
 .blessing-card,
 .power-card {
   background: #fff;
-  border: 1px solid #dce5ef;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8564), 85%)
+        90%
+    );
   border-radius: 12px;
   padding: 16px;
   box-shadow: none;
 }
 .check-card:hover,
 .blessing-card:hover {
-  border-color: #a9bed9;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8899), 85%)
+      75.686%
+  );
 }
 .check-card.active,
 .blessing-card.learned {
-  background: #edf4fc;
-  border-color: #89a7ce;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.642), 85%)
+      95.882%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9498), 85%)
+      67.255%
+  );
 }
 .check-card .name,
 .blessing-name {
-  color: #354e70;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.822), 85%)
+      32.353%
+  );
   font-size: 12px;
 }
 .check-card .desc {
-  color: #718299;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3769), 85%)
+      52.157%
+  );
   font: 11px/1.6 var(--sans);
 }
 .blessing-card .desc {
@@ -756,9 +1099,15 @@ input[type="range"] {
   gap: 10px;
 }
 .condition {
-  border-color: #dbe4ef;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8842), 85%)
+      89.804%
+  );
   border-radius: 9px;
-  background: #f9fbfe;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.642), 85%)
+      98.627%
+  );
   font-size: 12px;
 }
 .condition.active {
@@ -766,8 +1115,14 @@ input[type="range"] {
   border-color: #c78c9f;
 }
 .death-card {
-  border-color: #d9e3ef;
-  background: #f7f9fc;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9366), 85%)
+      89.412%
+  );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0449), 85%)
+      97.843%
+  );
   border-radius: 10px;
   padding: 16px;
 }
@@ -778,34 +1133,67 @@ input[type="range"] {
   font-size: 12px;
 }
 .level-box {
-  background: #f4f7fc;
-  border-color: #dbe4f0;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.3136), 85%)
+      97.255%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9466), 85%)
+      90%
+  );
   border-radius: 12px;
 }
 .level-badge {
-  border-color: #afc3dc;
-  background: #e4edfa;
-  color: #46688d;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8996), 85%)
+      77.451%
+  );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.5805), 85%)
+      93.725%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7735), 85%)
+      41.373%
+  );
   font-family: var(--display);
   border-radius: 14px;
 }
 .level-dot {
-  border-color: #cedbea;
-  background: #f2f6fc;
-  color: #7a8aa1;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9195), 85%)
+      86.275%
+  );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.4368), 85%)
+      96.863%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.395), 85%)
+      55.49%
+  );
   border-radius: 7px;
 }
 .level-dot.active {
-  background: #6986ac;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.661), 85%)
+      54.314%
+  );
   color: #fff;
-  border-color: #6986ac;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.661), 85%)
+      54.314%
+  );
 }
 .level-dot.current {
   outline-color: #c5aa74;
 }
 .validation-panel {
   padding: 0;
-  background: #f7f9fd;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.3793), 85%)
+      98.039%
+  );
 }
 .creation-check > summary {
   display: flex;
@@ -814,14 +1202,20 @@ input[type="range"] {
   gap: 10px;
   padding: 18px 22px;
   cursor: pointer;
-  color: #4b6486;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.649), 85%)
+      40.98%
+  );
   font-size: 12px;
   font-weight: 600;
 }
 .creation-check > summary::before {
   content: "+";
   font-size: 20px;
-  color: #7890af;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5881), 85%)
+      57.843%
+  );
 }
 .creation-check[open] > summary::before {
   content: "−";
@@ -839,7 +1233,10 @@ input[type="range"] {
   gap: 9px;
 }
 .validation-item {
-  border-color: #dde5f0;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8914), 85%)
+      90.392%
+  );
   background: #fff;
   border-radius: 8px;
   padding: 12px;
@@ -852,12 +1249,21 @@ input[type="range"] {
   padding: 5px 8px;
 }
 .rules-details {
-  border-color: #dce5ef;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8564), 85%)
+      90%
+  );
   border-radius: 9px;
 }
 .rules-details summary {
-  color: #435f80;
-  background: #edf3fb;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7191), 85%)
+      38.235%
+  );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.4629), 85%)
+      95.686%
+  );
   font-size: 13px;
 }
 .rules-details .content {
@@ -867,47 +1273,88 @@ input[type="range"] {
   display: flex;
   align-items: center;
   gap: 9px;
-  background: #243e60;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0449), 85%)
+      25.882%
+  );
   color: #f5e5c4;
   border: 1px solid #cbb684;
   border-radius: 14px;
   padding: 14px 18px;
   font: 600 12px var(--sans);
-  box-shadow: 0 7px 24px #192c5030;
+  box-shadow: 0 7px 24px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2042), 85%)
+        20.588% / 0.1882
+    );
 }
 .rules-fab:hover {
-  background: #35567f;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9451), 85%)
+      35.294%
+  );
 }
 .rules-dialog {
-  border: 1px solid #c4d1e3;
-  background: #f6f8fc;
-  color: #3c5272;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8191), 85%)
+        82.941%
+    );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.1494), 85%)
+      97.647%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7134), 85%)
+      34.118%
+  );
   border-radius: 18px;
 }
 .rules-dialog::backdrop {
-  background: #132541b8;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2589), 85%)
+      16.471% / 0.7216
+  );
   backdrop-filter: blur(4px);
 }
 .rules-header {
   background: #fff;
-  border-bottom-color: #dde6f0;
+  border-bottom-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8914), 85%)
+      90.392%
+  );
   padding: 18px 22px;
 }
 .rules-header h2 {
-  color: #294665;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9713), 85%)
+      27.843%
+  );
   font: 24px var(--display);
 }
 .rules-header small {
   font-size: 10px;
-  color: #7d8ca1;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3695), 85%)
+      56.078%
+  );
 }
 .rules-sidebar {
-  background: #edf2f9;
-  border-color: #d7e1ee;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.1494), 85%)
+      95.294%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9276), 85%)
+      88.824%
+  );
   font-size: 12px;
 }
 .rules-sidebar input {
-  border-color: #cbd8e9;
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.932), 85%)
+      85.49%
+  );
   background: #fff;
   border-radius: 8px;
   font: 12px var(--sans);
@@ -922,23 +1369,43 @@ input[type="range"] {
 }
 .rules-link:hover,
 .rules-link[aria-current] {
-  background: #dce7f7;
-  color: #294d78;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.4435), 85%)
+      91.569%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.128), 85%)
+      31.569%
+  );
 }
 .rules-controls {
   font-size: 12px;
 }
 .rules-controls input,
 .rules-controls select {
-  border: 1px solid #cbd8e9;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.932), 85%)
+        85.49%
+    );
   border-radius: 7px;
   background: #fff;
   padding: 8px;
-  color: #395474;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.784), 85%)
+      33.922%
+  );
 }
 .library-book {
-  background: #f5f8fc;
-  border: 1px solid #cad8e9;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2378), 85%)
+      97.451%
+  );
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9502), 85%)
+        85.294%
+    );
   border-radius: 20px;
   padding: 30px;
 }
@@ -947,7 +1414,10 @@ input[type="range"] {
 }
 .library-book h2 {
   font: 30px var(--display);
-  color: #2d4869;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9195), 85%)
+      29.412%
+  );
 }
 .character-cards {
   gap: 14px;
@@ -955,27 +1425,49 @@ input[type="range"] {
 .character-card,
 .new-character-card {
   background: white;
-  border: 1px solid #d7e2ef;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9852), 85%)
+        89.02%
+    );
   border-radius: 13px;
   padding: 15px;
-  color: #3b5575;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.7576), 85%)
+      34.51%
+  );
 }
 .character-card:hover,
 .new-character-card:hover {
-  background: #edf4fc;
-  border-color: #a7bfdc;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.642), 85%)
+      95.882%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9906), 85%)
+      75.882%
+  );
 }
 .character-card-avatar {
   border-radius: 10px;
-  background: #e6eef9;
-  border-color: #cedbea;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.409), 85%)
+      93.922%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9195), 85%)
+      86.275%
+  );
 }
 .character-card strong {
   font-size: 14px;
 }
 .character-card small {
   font: 11px/1.5 var(--sans);
-  color: #7b8ba0;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3747), 85%)
+      55.49%
+  );
 }
 .new-character-card {
   margin-top: 15px;
@@ -983,7 +1475,10 @@ input[type="range"] {
 .new-character-card small {
   grid-column: 2;
   font: 11px var(--sans);
-  color: #7b8ba0;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3747), 85%)
+      55.49%
+  );
 }
 footer {
   display: flex;
@@ -991,12 +1486,18 @@ footer {
   align-items: center;
   gap: 12px;
   font: 10px var(--sans);
-  color: #7e8ea5;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4094), 85%)
+      57.059%
+  );
   padding: 30px 0 55px;
 }
 footer > span {
   letter-spacing: 0.16em;
-  color: #546c8c;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5747), 85%)
+      43.922%
+  );
 }
 .auth-overlay {
   position: fixed;
@@ -1005,7 +1506,10 @@ footer > span {
   place-items: center;
   padding: 32px;
   overflow: auto;
-  background: #eef2f8;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9579), 85%)
+      95.294%
+  );
 }
 .auth-book {
   display: grid;
@@ -1013,11 +1517,19 @@ footer > span {
   width: min(1120px, 100%);
   padding: 0;
   margin: auto;
-  border: 1px solid #d5dfeb;
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8157), 85%)
+        87.843%
+    );
   border-radius: 26px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 26px 70px #29436815;
+  box-shadow: 0 26px 70px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9988), 85%)
+        28.431% / 0.0824
+    );
 }
 .auth-book::before,
 .auth-book::after {
@@ -1026,7 +1538,10 @@ footer > span {
 .auth-art {
   position: relative;
   min-height: 670px;
-  background: #1a2947;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0665), 85%)
+      19.02%
+  );
 }
 .auth-art > img {
   display: block;
@@ -1044,7 +1559,14 @@ footer > span {
   right: 0;
   text-align: left;
   padding: 100px 38px 34px;
-  background: linear-gradient(transparent, #1a2947 70%);
+  background: linear-gradient(
+    transparent,
+    hsl(
+        var(--accent-h, 215)
+          clamp(0%, calc(var(--accent-s, 43.5%) * 1.0665), 85%) 19.02%
+      )
+      70%
+  );
 }
 .auth-art-caption .eyebrow {
   color: #ebd2a0;
@@ -1071,7 +1593,10 @@ footer > span {
 .auth-book h1 {
   font: 500 42px/1.12 var(--display);
   letter-spacing: -0.035em;
-  color: #294363;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9524), 85%)
+      27.451%
+  );
   text-shadow: none;
   margin: 14px 0;
 }
@@ -1080,7 +1605,10 @@ footer > span {
 }
 .auth-subtitle {
   font: 13px/1.8 var(--sans);
-  color: #7a8a9f;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3714), 85%)
+      55.098%
+  );
   margin: 12px 0;
   max-width: 330px;
 }
@@ -1093,15 +1621,28 @@ footer > span {
   gap: 8px;
 }
 .auth-form .field label {
-  color: #526882;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5205), 85%)
+      41.569%
+  );
   font: 600 11px var(--sans);
   text-transform: none;
   letter-spacing: 0;
 }
 .auth-form .field input {
-  color: #344e6e;
-  background: #f8fafd;
-  border: 1px solid #d4dfed;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.823), 85%)
+      31.765%
+  );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2771), 85%)
+      98.235%
+  );
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9422), 85%)
+        88.039%
+    );
   border-radius: 9px;
   padding: 13px 14px;
   min-height: 48px;
@@ -1117,23 +1658,39 @@ footer > span {
   font-size: 12px;
 }
 .auth-actions .btn-primary {
-  background: #29496f;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0587), 85%)
+      29.804%
+  );
   color: #fff;
 }
 .auth-actions .btn-gold {
   background: #fff;
-  color: #546d8c;
-  border-color: #d4dfed;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5747), 85%)
+      43.922%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9422), 85%)
+      88.039%
+  );
   box-shadow: none;
 }
 .auth-footer {
   font: 10px var(--sans);
-  color: #8d9aae;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.389), 85%)
+      61.765%
+  );
   margin: 24px 0 0;
   letter-spacing: 0.06em;
 }
 :focus-visible {
-  outline: 3px solid #9bb6da;
+  outline: 3px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.0571), 85%)
+        73.137%
+    );
   outline-offset: 3px;
 }
 .page-heading h2:focus {
@@ -1192,8 +1749,15 @@ footer > span {
     padding: 10px 24px;
     border-radius: 0;
     border: 0;
-    background: #eef2f8f5;
-    box-shadow: 0 6px 12px #2c48650c;
+    background: hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9579), 85%)
+        95.294% / 0.9608
+    );
+    box-shadow: 0 6px 12px
+      hsl(
+        var(--accent-h, 215)
+          clamp(0%, calc(var(--accent-s, 43.5%) * 0.9037), 85%) 28.431% / 0.0471
+      );
     overflow: visible;
     backdrop-filter: blur(12px);
   }
@@ -1212,7 +1776,10 @@ footer > span {
     font-size: 11px;
     gap: 7px;
     padding: 12px 8px;
-    color: #657c9a;
+    color: hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4778), 85%)
+        50%
+    );
   }
   .book-tab .ui-icon {
     width: 17px;
@@ -1223,15 +1790,30 @@ footer > span {
   }
   .book-tab.active {
     color: #fff;
-    background: #36567e;
-    border-color: #36567e;
+    background: hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9195), 85%)
+        35.294%
+    );
+    border-color: hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9195), 85%)
+        35.294%
+    );
   }
   .book-tab:hover {
-    background: #dce6f4;
-    color: #3a5b84;
+    background: hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.1994), 85%)
+        90.98%
+    );
+    color: hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8953), 85%)
+        37.255%
+    );
   }
   .book-tab.active:hover {
-    background: #36567e;
+    background: hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9195), 85%)
+        35.294%
+    );
     color: #fff;
   }
   .session-metrics {
@@ -1501,21 +2083,42 @@ footer > span {
   letter-spacing: -0.01em;
 }
 .data-table .group-row td {
-  background: #e6edf8;
-  color: #5a7396;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2931), 85%)
+      93.725%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5747), 85%)
+      47.059%
+  );
   padding: 9px 12px;
   font-size: 11px;
 }
 .total-pill {
-  background: #e0eaf7;
-  color: #35567d;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.3557), 85%)
+      92.353%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9299), 85%)
+      34.902%
+  );
   border-radius: 7px;
   font-weight: 650;
 }
 .summary-bar {
-  background: #edf3fb;
-  color: #536d8d;
-  border-color: #bccde3;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.4629), 85%)
+      95.686%
+  );
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5952), 85%)
+      43.922%
+  );
+  border-color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9437), 85%)
+      81.373%
+  );
   font: 11px/1.6 var(--sans);
   padding: 11px 13px;
 }
@@ -1530,11 +2133,18 @@ footer > span {
 }
 .combat-settings {
   margin-top: 18px;
-  border-top: 1px solid #e2e9f3;
+  border-top: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9532), 85%)
+        91.961%
+    );
   padding-top: 14px;
 }
 .combat-settings > summary {
-  color: #68809f;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5119), 85%)
+      51.569%
+  );
   cursor: pointer;
   font: 600 12px/1.5 var(--sans);
 }
@@ -1596,7 +2206,11 @@ footer > span {
   padding: 0;
   overflow: hidden;
   background: #fff;
-  border-right: 1px solid #e5ebf3;
+  border-right: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8469), 85%)
+        92.549%
+    );
 }
 .rules-sidebar-top {
   flex-shrink: 0;
@@ -1604,7 +2218,10 @@ footer > span {
 }
 .rules-sidebar-top h3 {
   margin: 0 0 14px;
-  color: #304a6a;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8658), 85%)
+      30.196%
+  );
   font: 650 14px var(--sans);
 }
 .rules-sidebar-top > label {
@@ -1615,13 +2232,23 @@ footer > span {
   clip-path: inset(50%);
 }
 .rules-sidebar input {
-  background: #f5f7fb;
-  border: 1px solid #e0e7f1;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9852), 85%)
+      97.255%
+  );
+  border: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8685), 85%)
+        91.176%
+    );
   font-size: 12px;
   min-height: 40px;
 }
 #rules-search-status {
-  color: #8291a7;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.3993), 85%)
+      58.235%
+  );
   font-size: 10px;
   margin: 15px 0 4px;
 }
@@ -1631,7 +2258,11 @@ footer > span {
   overflow: auto;
   padding: 0 10px 18px;
   scrollbar-width: thin;
-  scrollbar-color: #cfdae9 transparent;
+  scrollbar-color: hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8539), 85%)
+        86.275%
+    )
+    transparent;
 }
 .rules-link {
   display: grid;
@@ -1644,53 +2275,91 @@ footer > span {
   border: 0;
   border-radius: 8px;
   background: transparent;
-  color: #647993;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4374), 85%)
+      48.431%
+  );
   text-align: left;
   font: 500 11px/1.5 var(--sans);
 }
 .rules-link-page {
-  color: #96a4b7;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4286), 85%)
+      65.294%
+  );
   font-size: 10px;
   font-variant-numeric: tabular-nums;
 }
 .rules-link:hover {
-  background: #f1f5fb;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2771), 85%)
+      96.471%
+  );
 }
 .rules-link[aria-current] {
-  color: #315880;
-  background: #e9f0fa;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.026), 85%)
+      34.706%
+  );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.4474), 85%)
+      94.706%
+  );
 }
 .rules-link[aria-current] .rules-link-page {
-  color: #315880;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.026), 85%)
+      34.706%
+  );
 }
 .rules-link small {
   grid-column: 1 / -1;
   font: 10px/1.6 var(--sans);
-  color: #7b8ca3;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.4105), 85%)
+      56.078%
+  );
   margin: 0;
 }
 #rules-toc details {
   margin-top: 12px;
-  border-top: 1px solid #e6ecf5;
+  border-top: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.9852), 85%)
+        93.137%
+    );
   padding-top: 12px;
 }
 #rules-toc summary {
   cursor: pointer;
   padding: 8px 12px;
   font-size: 11px;
-  color: #607a9c;
+  color: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.5473), 85%)
+      49.412%
+  );
 }
 .rules-reading {
   padding: 0;
   min-height: 0;
-  background: #edf1f7;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8842), 85%)
+      94.902%
+  );
 }
 .rules-controls {
   flex: 0 0 auto;
   gap: 7px;
   padding: 12px 16px;
-  border-bottom: 1px solid #e0e7f1;
-  background: #f8fafd;
+  border-bottom: 1px solid
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8685), 85%)
+        91.176%
+    );
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.2771), 85%)
+      98.235%
+  );
   font-size: 10px;
 }
 .rules-controls .btn {
@@ -1711,7 +2380,10 @@ footer > span {
 .rules-page-image {
   min-height: 0;
   padding: 16px;
-  background: #edf1f7;
+  background: hsl(
+    var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8842), 85%)
+      94.902%
+  );
   overflow: auto;
   scrollbar-width: thin;
 }
@@ -1722,7 +2394,11 @@ footer > span {
   max-width: none;
   margin: 0 auto;
   object-fit: contain;
-  box-shadow: 0 4px 20px #293d5b20;
+  box-shadow: 0 4px 20px
+    hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 0.8708), 85%)
+        25.882% / 0.1255
+    );
 }
 .rules-reading article {
   margin: 16px;
@@ -1761,7 +2437,11 @@ footer > span {
     width: min(290px, 88%);
     z-index: 3;
     border: 0;
-    box-shadow: 10px 0 32px #1c304427;
+    box-shadow: 10px 0 32px
+      hsl(
+        var(--accent-h, 215)
+          clamp(0%, calc(var(--accent-s, 43.5%) * 0.9579), 85%) 18.824% / 0.1529
+      );
   }
   .index-open .rules-sidebar {
     display: flex;
@@ -1772,7 +2452,10 @@ footer > span {
     inset: 0;
     z-index: 2;
     border: 0;
-    background: #12294565;
+    background: hsl(
+      var(--accent-h, 215) clamp(0%, calc(var(--accent-s, 43.5%) * 1.3476), 85%)
+        17.059% / 0.3961
+    );
   }
   #rules-index-toggle {
     display: inline-flex;
