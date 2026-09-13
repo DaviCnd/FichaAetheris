@@ -41,15 +41,11 @@
             ? (rgb[2] - rgb[0]) / delta + 2
             : (rgb[0] - rgb[1]) / delta + 4) * 60;
     }
-    const h = ((hue + 360) % 360) / 360;
-    const s = preferences.dark ? Math.min(saturation, 0.75) : saturation;
-    const l = preferences.dark ? 0.42 : 0.36;
-    const a = s * Math.min(l, 1 - l);
-    const channels = [0, 8, 4].map((n) => {
-      const k = (n + h * 12) % 12;
-      const c = l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
-      return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
-    });
+    // Contrast must use the exact selected color, including its lightness.
+    const channels = rgb.map((c) =>
+      c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4,
+    );
+    root.style.setProperty("--theme-accent", preferences.color);
     const luminance =
       channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
     root.style.setProperty(
@@ -66,7 +62,8 @@
       button.setAttribute("aria-pressed", String(preferences.dark));
     });
     document.getElementById("appearance-dark").checked = preferences.dark;
-    document.getElementById("appearance-color").value = preferences.color;
+    const picker = document.getElementById("appearance-color");
+    if (picker.value !== preferences.color) picker.value = preferences.color;
     document
       .querySelectorAll("[data-accent]")
       .forEach((button) =>
@@ -128,12 +125,15 @@
     preferences.dark = e.target.checked;
     save();
   });
-  document.getElementById("appearance-color").addEventListener("input", (e) => {
+  function applyCustomColor(e) {
     if (/^#[\da-f]{6}$/i.test(e.target.value)) {
       preferences.color = e.target.value.toLowerCase();
       save();
     }
-  });
+  }
+  const picker = document.getElementById("appearance-color");
+  picker.addEventListener("input", applyCustomColor);
+  picker.addEventListener("change", applyCustomColor);
   document.getElementById("appearance-reset").addEventListener("click", () => {
     preferences = { ...defaults };
     save();
