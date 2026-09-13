@@ -468,7 +468,9 @@ function setFormDisabled(disabled) {
       el.closest("#master-panel,#master-view-banner,.book-tabs") ||
       el.id === "logout-btn" ||
       el.id === "master-toggle-btn" ||
-      el.id === "export-btn"
+      el.id === "export-btn" ||
+      el.id === "print-btn" ||
+      el.hasAttribute("data-open-book")
     )
       return;
     el.disabled = disabled;

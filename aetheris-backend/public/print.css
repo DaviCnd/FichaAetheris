@@ -1,0 +1,219 @@
+/* All six areas form a readable, ink-friendly character sheet. */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+:root {
+  --paper: #fff;
+  --ink: #222;
+  --muted: #555;
+}
+html,
+body {
+  background: white;
+  color: #222;
+  font:
+    11px/1.45 Georgia,
+    serif;
+}
+.sheet {
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: white;
+  box-shadow: none;
+}
+.header {
+  padding: 12px 0;
+  color: #222;
+  text-align: left;
+  background: white !important;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+}
+.header::before,
+.header::after,
+.panel::before,
+.panel::after {
+  display: none;
+}
+.header h1 {
+  color: #222;
+  text-shadow: none;
+  font:
+    24px/1.2 Georgia,
+    serif;
+  letter-spacing: 0;
+  margin: 5px 0;
+}
+.header p,
+.session-line {
+  color: #555;
+  font-size: 10px;
+  margin: 5px 0;
+}
+.eyebrow {
+  color: #666;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+.page-heading {
+  margin: 16px 0 10px;
+  break-after: avoid;
+}
+.page-heading h2 {
+  font:
+    bold 19px/1.3 Georgia,
+    serif;
+  margin: 4px 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.page-heading p {
+  margin: 4px 0;
+  font-size: 10px;
+  color: #555;
+}
+.tab-page {
+  display: block !important;
+  break-before: page;
+}
+#tab-sheet {
+  break-before: auto;
+}
+.panel {
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #ccc;
+  background: white;
+  box-shadow: none;
+  break-inside: auto;
+}
+.panel > h2 {
+  font:
+    bold 14px/1.4 Georgia,
+    serif;
+  letter-spacing: 0;
+  margin: 0 0 10px;
+  text-transform: none;
+  break-after: avoid;
+}
+.panel h2 .bar {
+  display: none;
+}
+h3,
+summary {
+  break-after: avoid;
+}
+.field,
+.stat-card,
+.attr-card,
+.check-card,
+.blessing-card,
+.death-card,
+.validation-item,
+tr {
+  break-inside: avoid;
+}
+.grid,
+.identity-fields {
+  gap: 9px;
+}
+.identity-layout {
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 12px;
+}
+.portrait-frame {
+  width: 85px;
+  height: 105px;
+  border: 1px solid #bbb;
+  box-shadow: none;
+}
+.portrait-placeholder {
+  font-size: 9px;
+}
+.field label {
+  font-size: 8px;
+}
+.field input,
+.field select,
+.field textarea,
+.control {
+  color: #222;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  font:
+    10px/1.4 Georgia,
+    serif;
+}
+.field textarea {
+  min-height: 38px;
+}
+.section-note,
+.field-help,
+.info-box {
+  font-size: 9px;
+  line-height: 1.45;
+}
+.info-box {
+  background: #f5f5f5;
+  border-left-color: #bbb;
+  padding: 7px;
+}
+.table-scroll {
+  overflow: visible;
+}
+.data-table {
+  font-size: 9px;
+}
+.data-table th,
+.data-table td {
+  padding: 5px;
+}
+.data-table th,
+.data-table .group-row td {
+  background: #eee;
+  color: #222;
+}
+.stat-card,
+.attr-card {
+  padding: 8px;
+  background: #fafafa;
+  border-color: #ccc;
+}
+.stat-card .value {
+  font-size: 18px;
+}
+.stat-card .sub {
+  font-size: 8px;
+}
+.attr-card .value {
+  font-size: 22px;
+}
+.resource-grid {
+  margin-bottom: 10px;
+}
+.creation-check > summary {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding-bottom: 8px;
+}
+.creation-check-body h2 {
+  display: none;
+}
+.combat-settings {
+  margin-top: 10px;
+}
+.combat-settings summary {
+  font-weight: bold;
+}
+footer {
+  color: #777;
+  padding: 12px 0;
+  font-size: 8px;
+}
