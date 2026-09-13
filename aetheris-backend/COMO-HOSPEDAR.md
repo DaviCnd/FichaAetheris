@@ -1,90 +1,38 @@
-# Como publicar o Aetheris — Arquivo de Personagens v2.2
+# Hospedar o Arquivo de Personagens
 
-Este projeto foi ajustado para funcionar com **Render** (hospeda o site) +
-**Turso** (guarda o banco de dados de verdade, sem apagar nada).
+O repositório contém uma pasta `aetheris-backend`. Na hospedagem Node.js, configure:
 
-Por quê dois serviços? Porque o Render, no plano grátis, apaga o disco do
-servidor de vez em quando — e isso apagaria as contas e fichas dos seus
-jogadores. O Turso guarda o banco separado, de forma permanente, e é grátis
-para um projeto pequeno como este.
+- Diretório raiz do serviço: `aetheris-backend`.
+- Node.js: 22 ou superior.
+- Instalação: `npm ci`.
+- Inicialização: `npm start`.
+- HTTPS obrigatório em produção.
 
----
+Use `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN` para manter o banco fora do disco temporário do serviço. Sem essas variáveis, o aplicativo usa um SQLite local: ele precisa de um volume persistente e backup para uso real.
 
-## Parte 1 — Criar o banco de dados no Turso
+Defina `NODE_ENV=production` e `JWT_SECRET` com pelo menos 32 caracteres aleatórios. Para gerar uma chave localmente:
 
-1. Acesse **https://turso.tech** e crie uma conta gratuita (pode entrar com
-   GitHub).
-2. Depois de logado, crie um banco de dados novo (o botão costuma ser
-   "Create Database"). Dê um nome, tipo `aetheris`.
-3. Na página do banco, procure por **"Connect"** ou **"Create Token"**. Você
-   vai precisar de dois valores — guarde os dois em algum lugar seguro:
-   - **Database URL** (começa com `libsql://...`)
-   - **Auth Token** (uma string bem longa)
+```sh
+node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
+```
 
-## Parte 2 — Colocar o código no GitHub
+Copie o resultado somente para a configuração privada do serviço. Não coloque a chave no repositório. O arquivo `.env.example` lista as variáveis; ele não é carregado automaticamente.
 
-1. Crie uma conta em **https://github.com** se ainda não tiver.
-2. Crie um repositório novo (pode ser privado), por exemplo `aetheris-fichas`.
-3. Suba a pasta `aetheris-backend` inteira pra esse repositório. Duas formas
-   fáceis:
-   - Pelo site do GitHub: clique em "Add file" → "Upload files" e arraste
-     todos os arquivos da pasta.
-   - Ou, se tiver o Git instalado, pelo terminal:
-     ```
-     cd aetheris-backend
-     git init
-     git add .
-     git commit -m "primeira versão"
-     git branch -M main
-     git remote add origin https://github.com/SEU-USUARIO/aetheris-fichas.git
-     git push -u origin main
-     ```
+## Conta do mestre
 
-## Parte 3 — Publicar no Render
+1. Crie e entre na sua conta pelo site, inicialmente sem `ADMIN_USERNAME`/`ADMIN_USER_ID`.
+2. Na mesma sessão, abra `/api/me` no endereço do site. Anote o campo `id`.
+3. No painel da hospedagem, defina `ADMIN_USER_ID` com esse número e reinicie o serviço.
+4. Entre novamente. O botão “Painel do Mestre” aparecerá para essa conta.
 
-1. Acesse **https://render.com** e crie uma conta gratuita (pode entrar com
-   GitHub — isso já facilita a conexão).
-2. No painel, clique em **"New" → "Web Service"**.
-3. Escolha o repositório `aetheris-fichas` que você acabou de subir.
-4. Configure:
-   - **Name**: `aetheris` (ou o que quiser)
-   - **Region**: a mais próxima do Brasil disponível
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-   - **Instance Type**: Free
-5. Antes de clicar em "Create", vá até **"Environment Variables"** e
-   adicione três variáveis:
-   | Nome | Valor |
-   |---|---|
-   | `TURSO_DATABASE_URL` | a Database URL que você guardou no Turso |
-   | `TURSO_AUTH_TOKEN` | o Auth Token que você guardou no Turso |
-   | `JWT_SECRET` | invente uma senha longa e aleatória só sua |
-6. Clique em **"Create Web Service"**. O Render vai instalar tudo e subir o
-   site sozinho — leva uns 2 a 5 minutos na primeira vez.
-7. Quando terminar, o Render te dá um link tipo
-   `https://aetheris.onrender.com` — é esse link que você manda pros seus
-   jogadores.
+Se você já usava `ADMIN_USERNAME`, a atualização encontra essa conta pelo nome **exato**, desde que ela já exista no banco quando o serviço iniciar. Depois, prefira configurar o ID. Variações de maiúsculas não concedem acesso a outras contas. Não renomeamos nem excluímos contas antigas automaticamente.
 
-## Coisas importantes de saber
+## Atualizar uma instalação existente
 
-- **O plano grátis "dorme" depois de 15 minutos sem uso.** Na próxima vez que
-  alguém acessar, o site demora de 30 a 60 segundos pra "acordar" — depois
-  disso funciona normal. Não é bug, é assim mesmo no plano grátis.
-- **As fichas ficam seguras** mesmo quando o Render reinicia ou você atualiza
-  o código, porque elas estão salvas no Turso, não no Render.
-- Se um dia seu grupo crescer muito e o plano grátis do Render começar a
-  incomodar (pelo cold start), dá pra pagar uns 7 dólares por mês pra tirar
-  essa "soneca" — mas pra uma mesa de RPG entre amigos, o grátis costuma
-  bastar numa boa.
+Faça backup do banco antes de publicar. A aplicação preserva os registros e adiciona automaticamente a versão das fichas e a tabela de sessões. Todos deverão entrar novamente; os tokens anteriores não são aceitos pelo novo sistema de sessões.
 
-## Testando no seu próprio computador antes (opcional, recomendado)
+A versão 2.3 impede gravações de clientes antigos sem controle de versão. Se algum jogador deixou o site aberto antes da atualização, deve exportar alterações pendentes e atualizar a página.
 
-1. Instale o [Node.js](https://nodejs.org) (versão 18 ou mais recente).
-2. Na pasta do projeto, rode:
-   ```
-   npm install
-   npm start
-   ```
-3. Abra `http://localhost:3000` no navegador. Sem as variáveis do Turso
-   configuradas, ele usa um arquivo `aetheris.db` local automaticamente —
-   ótimo só pra testar antes de publicar de verdade.
+O livro incluído é uma cópia otimizada do PDF fornecido pelo autor, acompanhada de imagens de páginas e texto para busca. O leitor carrega apenas a página selecionada; o PDF completo é carregado ao abrir o link de download.
+
+Os preços, planos e limites do provedor devem ser conferidos diretamente nele antes da contratação.

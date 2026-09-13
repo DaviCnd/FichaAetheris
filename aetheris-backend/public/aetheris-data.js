@@ -1,5 +1,5 @@
 window.AETHERIS_DATA = {
-  "version": 2.2,
+  "version": 2.3,
   "regions": [
     "Elyndar",
     "Vharos",
@@ -1292,6 +1292,16 @@ window.AETHERIS_DATA = {
       "id": "amedrontado",
       "name": "Amedrontado",
       "effect": "-2 em ataques e não se aproxima da fonte."
+    },
+    {
+      "id": "congelamento_leve",
+      "name": "Congelamento Leve",
+      "effect": "-2m de Movimento por 3 turnos (p. 16)."
+    },
+    {
+      "id": "congelamento_total",
+      "name": "Congelamento Total",
+      "effect": "Não age por 1 turno (p. 16)."
     }
   ],
   "damageTypes": [
@@ -1806,7 +1816,7 @@ window.AETHERIS_DATA = {
       "name": "Besta",
       "damage": "1d10 Perfuração",
       "property": "20m, recarga",
-      "notes": "Interação simples para recarregar."
+      "notes": "Ação simples para recarregar (p. 39); o livro não define esse termo. Combine com o mestre o recurso usado."
     },
     {
       "name": "Arma de fogo arcana",
